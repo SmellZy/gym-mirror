@@ -8,21 +8,23 @@ enum Difficulty {
 }
 
 class Workout {
+  final int id;
   final String title;
   final String description;
   final int calories;
   final int duration;
   final Difficulty difficulty;
-  final List<Exercise> exericises;
+  final List<Exercise> exercises;
 
   Workout(
     {
+      required this.id,
       required this.title, 
       required this.description, 
       required this.calories, 
       required this.duration, 
       required this.difficulty,
-      required this.exericises,
+      required this.exercises,
       }
     );
 }

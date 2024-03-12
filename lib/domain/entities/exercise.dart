@@ -1,4 +1,5 @@
 class Exercise {
+  final int id;
   final String name;
   final String description;
   final int repetitions;
@@ -7,6 +8,7 @@ class Exercise {
 
   Exercise(
     {
+      required this.id,
       required this.name, 
       required this.description, 
       required this.repetitions, 
