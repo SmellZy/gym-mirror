@@ -7,22 +7,25 @@ part 'user_model.g.dart';
 @HiveType(typeId: 0)
 class UserModel {
   @HiveField(0)
-  final String name;
+  final int id;
   @HiveField(1)
-  final DateTime birthday;
+  final String name;
   @HiveField(2)
-  final int height;
+  final DateTime birthday;
   @HiveField(3)
-  final int weight;
+  final int height;
   @HiveField(4)
-  final int dayStreak;
+  final int weight;
   @HiveField(5)
-  final List<Workout> workoutHistory;
+  final int dayStreak;
   @HiveField(6)
+  final List<Workout> workoutHistory;
+  @HiveField(7)
   final FitnessLevel fitnessLevel;
 
   UserModel(
     {
+      required this.id,
       required this.name, 
       required this.birthday, 
       required this.height, 
@@ -36,6 +39,7 @@ class UserModel {
 
   //Convertion from entity to model
   factory UserModel.fromEntity(User user) => UserModel(
+    id: user.id,
     name: user.name, 
     birthday: user.birthday, 
     height: user.height, 
@@ -47,6 +51,7 @@ class UserModel {
 
   //Convertion from model to entity
   User toEntity() => User(
+    id: id,
     name: name, 
     birthday: birthday, 
     height: height, 

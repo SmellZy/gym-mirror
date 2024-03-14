@@ -6,7 +6,7 @@ class UpdateUser {
 
   UpdateUser(this.repository);
 
-  Future<User> call(User user){
+  Future<void> call(User user){
     return repository.updateUser(user);
   }
 }

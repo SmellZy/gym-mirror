@@ -7,6 +7,7 @@ enum FitnessLevel {
 }
 
 class User {
+  final int id;
   final String name;
   final DateTime birthday;
   final int height;
@@ -17,6 +18,7 @@ class User {
 
   User(
     {
+      required this.id,
       required this.name, 
       required this.birthday, 
       required this.height, 

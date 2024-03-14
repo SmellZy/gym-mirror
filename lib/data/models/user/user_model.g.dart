@@ -17,33 +17,36 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return UserModel(
-      name: fields[0] as String,
-      birthday: fields[1] as DateTime,
-      height: fields[2] as int,
-      weight: fields[3] as int,
-      dayStreak: fields[4] as int,
-      workoutHistory: (fields[5] as List).cast<Workout>(),
-      fitnessLevel: fields[6] as FitnessLevel,
+      id: fields[0] as int,
+      name: fields[1] as String,
+      birthday: fields[2] as DateTime,
+      height: fields[3] as int,
+      weight: fields[4] as int,
+      dayStreak: fields[5] as int,
+      workoutHistory: (fields[6] as List).cast<Workout>(),
+      fitnessLevel: fields[7] as FitnessLevel,
     );
   }
 
   @override
   void write(BinaryWriter writer, UserModel obj) {
     writer
-      ..writeByte(7)
+      ..writeByte(8)
       ..writeByte(0)
-      ..write(obj.name)
+      ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.birthday)
+      ..write(obj.name)
       ..writeByte(2)
-      ..write(obj.height)
+      ..write(obj.birthday)
       ..writeByte(3)
-      ..write(obj.weight)
+      ..write(obj.height)
       ..writeByte(4)
-      ..write(obj.dayStreak)
+      ..write(obj.weight)
       ..writeByte(5)
-      ..write(obj.workoutHistory)
+      ..write(obj.dayStreak)
       ..writeByte(6)
+      ..write(obj.workoutHistory)
+      ..writeByte(7)
       ..write(obj.fitnessLevel);
   }
 
