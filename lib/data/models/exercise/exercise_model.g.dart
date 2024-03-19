@@ -23,13 +23,14 @@ class ExerciseModelAdapter extends TypeAdapter<ExerciseModel> {
       repetitions: fields[3] as int,
       sets: fields[4] as int,
       restTime: fields[5] as int,
+      modelPath: fields[6] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, ExerciseModel obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -41,7 +42,9 @@ class ExerciseModelAdapter extends TypeAdapter<ExerciseModel> {
       ..writeByte(4)
       ..write(obj.sets)
       ..writeByte(5)
-      ..write(obj.restTime);
+      ..write(obj.restTime)
+      ..writeByte(6)
+      ..write(obj.modelPath);
   }
 
   @override

@@ -5,6 +5,7 @@ class Exercise {
   final int repetitions;
   final int sets;
   final int restTime;
+  final String modelPath;
 
   Exercise(
     {
@@ -13,7 +14,8 @@ class Exercise {
       required this.description, 
       required this.repetitions, 
       required this.sets, 
-      required this.restTime
+      required this.restTime,
+      required this.modelPath
     }
   );
 }

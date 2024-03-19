@@ -17,6 +17,8 @@ class ExerciseModel {
   final int sets;
   @HiveField(5)
   final int restTime;
+  @HiveField(6)
+  final String modelPath;
 
   ExerciseModel(
     {
@@ -25,7 +27,8 @@ class ExerciseModel {
       required this.description, 
       required this.repetitions, 
       required this.sets, 
-      required this.restTime
+      required this.restTime,
+      required this.modelPath
     }
   );
 
@@ -36,7 +39,8 @@ class ExerciseModel {
     description: exercise.description, 
     repetitions: exercise.repetitions, 
     sets: exercise.sets, 
-    restTime: exercise.restTime
+    restTime: exercise.restTime,
+    modelPath: exercise.modelPath
   );
 
   //Convertion from model to entity
@@ -46,6 +50,19 @@ class ExerciseModel {
     description: description, 
     repetitions: repetitions, 
     sets: sets, 
-    restTime: restTime
+    restTime: restTime,
+    modelPath: modelPath
   );
+
+  static ExerciseModel fromJson(Map<String, dynamic> json) {
+    return ExerciseModel(
+      id: json['id'] as int,
+      name: json['name'] as String,
+      description: json['description'] as String,
+      repetitions: json['repetitions'] as int,
+      sets: json['sets'] as int,
+      restTime: json['restTime'] as int,
+      modelPath: json['modelPath'] as String,
+    );
+  }
 }

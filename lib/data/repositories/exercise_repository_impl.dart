@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:flutter/services.dart';
 import 'package:gym_mirror/data/datasources/exercise_local_datasource.dart';
 import 'package:gym_mirror/data/models/exercise/exercise_model.dart';
 import 'package:gym_mirror/domain/entities/exercise.dart';
@@ -36,5 +39,17 @@ class ExerciseRepositoryImpl implements ExerciseRepository {
   Future<void> updateExercise(Exercise exercise) async{
     final exerciseModel = ExerciseModel.fromEntity(exercise);
     localDatasource.updateExercise(exerciseModel);
+  }
+
+  Future<List<Exercise>> loadExercises() async {
+    try {
+      final String exercisesJson = await rootBundle.loadString('assets/exercises.json');
+      final List<dynamic> exercisesData = json.decode(exercisesJson);
+      final List<Exercise> exercises = exercisesData.map((json) => ExerciseModel.fromJson(json).toEntity()).toList();
+      return exercises;
+    } catch (error) {
+      // Handle JSON loading errors
+      throw Exception('Failed to load exercises from JSON: $error');
+    }
   }
 }
