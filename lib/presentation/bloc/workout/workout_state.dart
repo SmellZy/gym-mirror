@@ -36,15 +36,6 @@ class WorkoutLoaded extends WorkoutState {
 }
 
 // Error States
-class WorkoutsError extends WorkoutState {
-  final String message;
-
-  const WorkoutsError(this.message);
-
-  @override
-  List<Object> get props => [message];
-}
-
 class WorkoutError extends WorkoutState {
   final String message;
 
