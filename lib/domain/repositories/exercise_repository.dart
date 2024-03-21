@@ -6,4 +6,5 @@ abstract class ExerciseRepository {
   Future<void> createExercise(Exercise exercise);
   Future<void> updateExercise(Exercise exercise);
   Future<void> deleteExercise(int id);
+  Future<List<Exercise>> loadExercises();
 }

@@ -43,7 +43,7 @@ class ExerciseRepositoryImpl implements ExerciseRepository {
 
   Future<List<Exercise>> loadExercises() async {
     try {
-      final String exercisesJson = await rootBundle.loadString('assets/exercises.json');
+      final String exercisesJson = await rootBundle.loadString('assets/json/exercises.json');
       final List<dynamic> exercisesData = json.decode(exercisesJson);
       final List<Exercise> exercises = exercisesData.map((json) => ExerciseModel.fromJson(json).toEntity()).toList();
       return exercises;
