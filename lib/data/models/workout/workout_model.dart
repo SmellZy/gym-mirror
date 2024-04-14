@@ -9,27 +9,27 @@ class WorkoutModel {
   @HiveField(0)
   final int id;
   @HiveField(1)
-  final String title;
+  final String? title;
   @HiveField(2)
-  final String description;
+  final String? description;
   @HiveField(3)
-  final int calories;
+  final int? calories;
   @HiveField(4)
-  final int duration;
+  final int? duration;
   @HiveField(5)
-  final Difficulty difficulty;
+  final Difficulty? difficulty;
   @HiveField(6)
-  final List<Exercise> exercises;
+  final List<Exercise>? exercises;
 
   WorkoutModel(
     {
       required this.id, 
-      required this.title, 
-      required this.description, 
-      required this.calories, 
-      required this.duration, 
-      required this.difficulty, 
-      required this.exercises
+      this.title, 
+      this.description, 
+      this.calories, 
+      this.duration, 
+      this.difficulty, 
+      this.exercises
     }
   );
 

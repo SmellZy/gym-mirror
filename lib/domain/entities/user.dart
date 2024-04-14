@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:gym_mirror/domain/entities/workout.dart';
 
 enum FitnessLevel {
@@ -6,26 +7,29 @@ enum FitnessLevel {
   advanced
 }
 
-class User {
+class User extends Equatable{
   final int id;
-  final String name;
-  final DateTime birthday;
-  final int height;
-  final int weight;
-  final int dayStreak;
-  final List<Workout> workoutHistory;
-  final FitnessLevel fitnessLevel;
+  final String? name;
+  final DateTime? birthday;
+  final int? height;
+  final int? weight;
+  final int? dayStreak;
+  final List<Workout>? workoutHistory;
+  final FitnessLevel? fitnessLevel;
 
   User(
     {
       required this.id,
-      required this.name, 
-      required this.birthday, 
-      required this.height, 
-      required this.weight,
-      required this.dayStreak,
-      required this.workoutHistory,
-      required this.fitnessLevel,
+      this.name, 
+      this.birthday, 
+      this.height, 
+      this.weight,
+      this.dayStreak,
+      this.workoutHistory,
+      this.fitnessLevel,
     }
   );
+  
+  @override
+  List<Object?> get props => [id, name, birthday, height, weight, dayStreak, workoutHistory, fitnessLevel];
 }

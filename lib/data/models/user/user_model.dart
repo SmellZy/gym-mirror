@@ -9,30 +9,30 @@ class UserModel {
   @HiveField(0)
   final int id;
   @HiveField(1)
-  final String name;
+  final String? name;
   @HiveField(2)
-  final DateTime birthday;
+  final DateTime? birthday;
   @HiveField(3)
-  final int height;
+  final int? height;
   @HiveField(4)
-  final int weight;
+  final int? weight;
   @HiveField(5)
-  final int dayStreak;
+  final int? dayStreak;
   @HiveField(6)
-  final List<Workout> workoutHistory;
+  final List<Workout>? workoutHistory;
   @HiveField(7)
-  final FitnessLevel fitnessLevel;
+  final FitnessLevel? fitnessLevel;
 
   UserModel(
     {
       required this.id,
-      required this.name, 
-      required this.birthday, 
-      required this.height, 
-      required this.weight,
-      required this.dayStreak,
-      required this. workoutHistory,
-      required this.fitnessLevel
+      this.name, 
+      this.birthday, 
+      this.height, 
+      this.weight,
+      this.dayStreak,
+      this.workoutHistory,
+      this.fitnessLevel
     }
   );
 
