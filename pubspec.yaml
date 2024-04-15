@@ -19,8 +19,11 @@ dependencies:
   meta: ^1.10.0
   equatable: ^2.0.5
   get_it: ^7.6.7
-  
+  #UI dependencies
   flutter_onboarding_slider: ^1.0.11
+  auto_route: ^8.0.3
+  another_flutter_splash_screen: ^1.2.0
+  auto_size_text: ^3.0.0
 
 dev_dependencies:
   flutter_test:
@@ -28,9 +31,23 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   hive_generator: ^2.0.1
   build_runner: ^2.1.7
+  auto_route_generator: ^8.0.0
 
 flutter:
   uses-material-design: true
 
   assets:
-    - assets/
+    - assets/img/
+    - assets/background/
+    - assets/fonts/
+
+  fonts:
+    - family: Outer-Sans
+      fonts:
+        - asset: assets/fonts/Made-Outer-Sans/MADE-Outer-Sans-Bold.otf
+        - asset: assets/fonts/Made-Outer-Sans/MADE-Outer-Sans-Light.otf
+        - asset: assets/fonts/Made-Outer-Sans/MADE-Outer-Sans-Medium.otf
+        - asset: assets/fonts/Made-Outer-Sans/MADE-Outer-Sans-Regular.otf
+        - asset: assets/fonts/Made-Outer-Sans/MADE-Outer-Sans-Thin.otf
+flutter_intl:
+  enabled: true
