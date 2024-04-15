@@ -1,0 +1,93 @@
+[
+    {
+      "id": 1,
+      "name": "Віджимання",
+      "description": "Вправа для тренування м'язів грудей, плечей і рук.",
+      "repetitions": 10,
+      "sets": 3,
+      "restTime": 30,
+      "modelPath": "models/pushups.obj"
+    },
+    {
+      "id": 2,
+      "name": "Присідання",
+      "description": "Вправа для тренування м'язів ніг, сідниць і спини.",
+      "repetitions": 12,
+      "sets": 4,
+      "restTime": 60,
+      "modelPath": "models/squats.obj"
+    },
+    {
+      "id": 3,
+      "name": "Підтягування",
+      "description": "Вправа для тренування м'язів спини та рук.",
+      "repetitions": 8,
+      "sets": 5,
+      "restTime": 90,
+      "modelPath": "models/pullups.obj"
+    },
+    {
+      "id": 4,
+      "name": "Жим штанги лежачи",
+      "description": "Вправа для тренування м'язів грудей, плечей і рук.",
+      "repetitions": 6,
+      "sets": 6,
+      "restTime": 120,
+      "modelPath": "models/bench_press.obj"
+    },
+    {
+      "id": 5,
+      "name": "Станова тяга",
+      "description": "Вправа для тренування м'язів спини, ніг і сідниць.",
+      "repetitions": 5,
+      "sets": 7,
+      "restTime": 150,
+      "modelPath": "models/deadlift.obj"
+    },
+    {
+      "id": 6,
+      "name": "Біг на доріжці",
+      "description": "Вправа для тренування серцево-судинної системи.",
+      "repetitions": 30,
+      "sets": 1,
+      "restTime": 0,
+      "modelPath": "models/treadmill.obj"
+    },
+    {
+      "id": 7,
+      "name": "Плавання",
+      "description": "Вправа для тренування м'язів всього тіла.",
+      "repetitions": 20,
+      "sets": 2,
+      "restTime": 30,
+      "modelPath": "models/swimming.obj"
+    },
+    {
+      "id": 8,
+      "name": "Велосипед",
+      "description": "Вправа для тренування м'язів ніг, серцево-судинної системи.",
+      "repetitions": 45,
+      "sets": 1,
+      "restTime": 0,
+      "modelPath": "models/bike.obj"
+    },
+    {
+      "id": 9,
+      "name": "Йога",
+      "description": "Вправа для тренування гнучкості, розтяжки та релаксації.",
+      "repetitions": 10,
+      "sets": 3,
+      "restTime": 30,
+      "modelPath": "models/yoga.obj"
+    },
+    {
+      "id": 10,
+      "name": "Пілатес",
+      "description": "Вправа для тренування м'язів кора, покращення постави.",
+      "repetitions": 12,
+      "sets": 4,
+      "restTime": 60,
+      "modelPath": "models/pilates.obj"
+    }
+  ]
+  

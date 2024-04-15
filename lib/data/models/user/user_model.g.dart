@@ -18,13 +18,13 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
     };
     return UserModel(
       id: fields[0] as int,
-      name: fields[1] as String,
-      birthday: fields[2] as DateTime,
-      height: fields[3] as int,
-      weight: fields[4] as int,
-      dayStreak: fields[5] as int,
-      workoutHistory: (fields[6] as List).cast<Workout>(),
-      fitnessLevel: fields[7] as FitnessLevel,
+      name: fields[1] as String?,
+      birthday: fields[2] as DateTime?,
+      height: fields[3] as int?,
+      weight: fields[4] as int?,
+      dayStreak: fields[5] as int?,
+      workoutHistory: (fields[6] as List?)?.cast<Workout>(),
+      fitnessLevel: fields[7] as FitnessLevel?,
     );
   }
 

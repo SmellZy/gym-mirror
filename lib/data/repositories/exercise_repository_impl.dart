@@ -41,15 +41,17 @@ class ExerciseRepositoryImpl implements ExerciseRepository {
     localDatasource.updateExercise(exerciseModel);
   }
 
-  Future<List<Exercise>> loadExercises() async {
-    try {
-      final String exercisesJson = await rootBundle.loadString('assets/json/exercises.json');
-      final List<dynamic> exercisesData = json.decode(exercisesJson);
-      final List<Exercise> exercises = exercisesData.map((json) => ExerciseModel.fromJson(json).toEntity()).toList();
-      return exercises;
-    } catch (error) {
-      // Handle JSON loading errors
-      throw Exception('Failed to load exercises from JSON: $error');
-    }
-  }
+@override
+Future<List<Exercise>> loadExercises() async {
+  final String exercisesJson = await rootBundle.loadString('/Users/dima/Development/gym_mirror/assets/json/exercises.json');
+  final List<ExerciseModel> exercises = (jsonDecode(exercisesJson) as List)
+      .map((dynamic model) => ExerciseModel.fromJson(model))
+      .toList();
+      
+  localDatasource.loadExercises(exercises);
+  final List<Exercise> res = exercises.map((model) => model.toEntity()).toList();
+
+  return res;
+}
+
 }

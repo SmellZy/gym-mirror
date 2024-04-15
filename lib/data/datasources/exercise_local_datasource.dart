@@ -33,4 +33,10 @@ class ExerciseLocalDatasource {
   void deleteExercise(int id) {
     exerciseBox.deleteAt(id);
   }
+
+  void loadExercises(List<ExerciseModel> exercises) {
+    for (var exercise in exercises) {
+      exerciseBox.add(exercise);
+    }
+  }
 }

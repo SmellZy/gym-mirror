@@ -18,12 +18,12 @@ class ExerciseModelAdapter extends TypeAdapter<ExerciseModel> {
     };
     return ExerciseModel(
       id: fields[0] as int,
-      name: fields[1] as String,
-      description: fields[2] as String,
-      repetitions: fields[3] as int,
-      sets: fields[4] as int,
-      restTime: fields[5] as int,
-      modelPath: fields[6] as String,
+      name: fields[1] as String?,
+      description: fields[2] as String?,
+      repetitions: fields[3] as int?,
+      sets: fields[4] as int?,
+      restTime: fields[5] as int?,
+      modelPath: fields[6] as String?,
     );
   }
 
