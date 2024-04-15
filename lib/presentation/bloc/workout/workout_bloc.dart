@@ -18,9 +18,11 @@ class WorkoutBloc extends Bloc<WorkoutEvent, WorkoutState> {
 
   }
   
-  Future<void> _onGetWorkouts(event, emit) async {
+  Future<void> _onGetWorkouts(GetWorkoutsEvent event, Emitter<WorkoutState> emit) async {
     try {
-      emit(WorkoutLoading());
+      if (state is! WorkoutsLoaded) {
+        emit(WorkoutLoading());
+      }
       final List<Workout> workout = await workoutRepository.getWorkouts();
       emit(WorkoutsLoaded(workout));
     } catch (error) {
@@ -28,9 +30,11 @@ class WorkoutBloc extends Bloc<WorkoutEvent, WorkoutState> {
     }
   }
 
-  Future<void> _onGetWorkout(event, emit) async {
+  Future<void> _onGetWorkout(GetWorkoutEvent event, Emitter<WorkoutState> emit) async {
     try {
-      emit(WorkoutLoading());
+      if (state is! WorkoutLoaded) {
+        emit(WorkoutLoading());
+      }
       final workout = await workoutRepository.getWorkoutById(event.id);
       emit(WorkoutLoaded(workout));
     } catch (error) {
@@ -38,9 +42,11 @@ class WorkoutBloc extends Bloc<WorkoutEvent, WorkoutState> {
     }
   }
 
-  Future<void> _onCreateWorkout(event, emit) async {
+  Future<void> _onCreateWorkout(CreateWorkoutEvent event, Emitter<WorkoutState> emit) async {
     try {
-      emit(WorkoutCreating());
+      if (state is! WorkoutsLoaded) {
+        emit(WorkoutCreating());
+      }
       await workoutRepository.createWorkout(event.workout);
       final List<Workout> workouts = await workoutRepository.getWorkouts();
       emit(WorkoutsLoaded(workouts));
@@ -49,9 +55,11 @@ class WorkoutBloc extends Bloc<WorkoutEvent, WorkoutState> {
     }
   }
 
-  Future<void> _onUpdateWorkout(event, emit) async {
+  Future<void> _onUpdateWorkout(UpdateWorkoutEvent event, Emitter<WorkoutState> emit) async {
     try {
-      emit(WorkoutUpdating());
+      if (state is! WorkoutsLoaded) {
+        emit(WorkoutUpdating());
+      }
       await workoutRepository.updateWorkout(event.workout);
       final List<Workout> workouts = await workoutRepository.getWorkouts();
       emit(WorkoutsLoaded(workouts));
@@ -60,9 +68,11 @@ class WorkoutBloc extends Bloc<WorkoutEvent, WorkoutState> {
     }
   }
 
-  Future<void> _onDeleteWorkout(event, emit) async {
+  Future<void> _onDeleteWorkout(DeleteWorkoutEvent event, Emitter<WorkoutState> emit) async {
     try {
-      emit(WorkoutDeleting());
+      if (state is! WorkoutsLoaded) {
+        emit(WorkoutDeleting());
+      }
       await workoutRepository.deleteWorkout(event.id);
       final List<Workout> workouts = await workoutRepository.getWorkouts();
       emit(WorkoutsLoaded(workouts));

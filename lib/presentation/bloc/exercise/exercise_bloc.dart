@@ -19,9 +19,12 @@ class ExerciseBloc extends Bloc<ExerciseEvent, ExerciseState> {
     on<DeleteExerciseEvent>(_onDeleteExercise);
   }
 
-  Future<void> _onLoadExercises(event, emit) async {
+  Future<void> _onLoadExercises(LoadExercisesEvent event, Emitter<ExerciseState> emit) async {
     try {
-      emit(ExerciseLoading());
+      if (state is! ExercisesLoaded) {
+        emit(ExerciseLoading());
+      }
+
       final List<Exercise> exercises = await exerciseRepository.loadExercises();
       emit(ExercisesLoaded(exercises));
     } catch (error) {
@@ -29,9 +32,12 @@ class ExerciseBloc extends Bloc<ExerciseEvent, ExerciseState> {
     }
   }
 
-  Future<void> _onGetExercises(event, emit) async {
+  Future<void> _onGetExercises(GetExercisesEvent event, Emitter<ExerciseState> emit) async {
     try {
-      emit(ExerciseLoading());
+      if (state is! ExercisesLoaded) {
+        emit(ExerciseLoading());
+      }
+      
       final List<Exercise> exercises = await exerciseRepository.getExercises();
       emit(ExercisesLoaded(exercises));
     } catch (error) {
@@ -39,9 +45,11 @@ class ExerciseBloc extends Bloc<ExerciseEvent, ExerciseState> {
     }
   }
 
-  Future<void> _onGetExercise(event, emit) async {
+  Future<void> _onGetExercise(GetExerciseEvent event,Emitter<ExerciseState> emit) async {
     try {
-      emit(ExerciseLoading());
+      if (state is! ExerciseLoaded) {
+        emit(ExerciseLoading());
+      }
       final Exercise exercise = await exerciseRepository.getExerciseById(event.id);
       emit(ExerciseLoaded(exercise));
     } catch (error) {
@@ -49,9 +57,12 @@ class ExerciseBloc extends Bloc<ExerciseEvent, ExerciseState> {
     }
   }
 
-  Future<void> _onCreateExercise(event, emit) async {
+  Future<void> _onCreateExercise(CreateExerciseEvent event, Emitter<ExerciseState> emit) async {
     try {
-      emit(ExerciseCreating());
+      if (state is! ExercisesLoaded) {
+        emit(ExerciseCreating());
+      }
+
       await exerciseRepository.createExercise(event.exercise);
       final List<Exercise> exercises = await exerciseRepository.getExercises();
       emit(ExercisesLoaded(exercises));
@@ -60,9 +71,12 @@ class ExerciseBloc extends Bloc<ExerciseEvent, ExerciseState> {
     }
   }
 
-  Future<void> _onUpdateExercise(event, emit) async {
+  Future<void> _onUpdateExercise(UpdateExerciseEvent event,Emitter<ExerciseState> emit) async {
     try {
-      emit(ExerciseUpdating());
+      if (state is! ExercisesLoaded) {
+        emit(ExerciseUpdating());
+      }
+
       await exerciseRepository.updateExercise(event.exercise);
       final List<Exercise> exercises = await exerciseRepository.getExercises();
       emit(ExercisesLoaded(exercises));
@@ -71,9 +85,12 @@ class ExerciseBloc extends Bloc<ExerciseEvent, ExerciseState> {
     }
   }
 
-  Future<void> _onDeleteExercise(event, emit) async {
+  Future<void> _onDeleteExercise(DeleteExerciseEvent event, Emitter<ExerciseState> emit) async {
     try {
-      emit(ExerciseDeleting());
+      if (state is! ExercisesLoaded) {
+        emit(ExerciseDeleting());
+      }
+      
       await exerciseRepository.deleteExercise(event.id);
       final List<Exercise> exercises = await exerciseRepository.getExercises();
       emit(ExercisesLoaded(exercises));

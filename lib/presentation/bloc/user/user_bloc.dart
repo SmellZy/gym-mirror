@@ -18,9 +18,11 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<CreateUserEvent>(_onCreateUser);
   }
 
-  Future<void> _onGetUser(event, emit) async {
+  Future<void> _onGetUser(GetUserEvent event, Emitter<UserState> emit) async {
     try {
-      emit(UserLoading());
+      if (state is! UserLoaded) {
+        emit(UserLoading());
+      }
       final user = await userRepository.getUser();
       emit(UserLoaded(user));
     } catch (error) {
@@ -28,9 +30,11 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     }
   }
 
-  Future<void> _onUpdateUser(event, emit) async {
+  Future<void> _onUpdateUser(UpdateUserEvent event, Emitter<UserState> emit) async {
     try {
-      emit(UserLoading());
+      if (state is! UserLoaded) {
+        emit(UserLoading());
+      }
       await userRepository.updateUser(event.user);
       final user = await userRepository.getUser();
       emit(UserLoaded(user));
@@ -39,9 +43,11 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     }
   }
 
-  Future<void> _onCreateUser(event, emit) async {
+  Future<void> _onCreateUser(CreateUserEvent event, Emitter<UserState> emit) async {
     try {
-      emit(UserLoading());
+      if (state is! UserLoaded) {
+        emit(UserLoading());
+      }
       await userRepository.createUser(event.user);
       final user = await userRepository.getUser();
       emit(UserLoaded(user));
