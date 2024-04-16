@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
  import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
+import 'package:gym_mirror/presentation/pages/greeting_screen.dart';
  @RoutePage()
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -11,7 +12,7 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return FlutterSplashScreen(
       useImmersiveMode: true,
-      duration: const Duration(seconds: 10),
+      duration: const Duration(seconds: 5),
       splashScreenBody: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -38,7 +39,7 @@ class SplashScreen extends StatelessWidget {
           ],
         ),
       ),
-      
+      nextScreen: GreetingPage(),
     );
   }
 }
