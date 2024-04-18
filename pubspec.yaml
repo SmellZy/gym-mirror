@@ -22,7 +22,10 @@ dependencies:
   equatable: ^2.0.5
   get_it: ^7.6.7
 
+  #Cache dependencies
+  flutter_cache_manager: ^3.3.1
   asset_cache: ^2.1.0
+  
   #UI dependencies
 
   flutter_onboarding_slider: ^1.0.11
