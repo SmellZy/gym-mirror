@@ -1,12 +1,40 @@
+import 'dart:async';
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
  import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
-import 'package:gym_mirror/presentation/pages/greeting_screen.dart';
+import 'package:gym_mirror/router/router.dart';
+
  @RoutePage()
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  late Image backgroundImage;
+
+  @override
+  void initState() {
+    super.initState();
+    backgroundImage = Image.asset("assets/background/first_gradient.png");
+  }
+
+@override
+  void didChangeDependencies(){
+    super.didChangeDependencies();
+    precacheImage(backgroundImage.image, context);
+    Timer(const Duration(seconds: 5),
+        () => AutoRouter.of(context).pushAll([          
+          const EnterNameRoute(),
+          const GreetingRoute(),
+          
+        ]
+      )
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +67,6 @@ class SplashScreen extends StatelessWidget {
           ],
         ),
       ),
-      nextScreen: GreetingPage(),
     );
   }
 }

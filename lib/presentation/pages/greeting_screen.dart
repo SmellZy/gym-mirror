@@ -1,8 +1,13 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_cache_manager/file.dart';
+import 'package:gym_mirror/cache_container.dart';
 import 'package:o3d/o3d.dart';
 
+@RoutePage()
 class GreetingPage extends StatefulWidget {
+
   const GreetingPage({super.key});
 
   @override
@@ -16,6 +21,8 @@ class _GreetingPageState extends State<GreetingPage> {
   bool cameraControls = false;
   final PageController _pageController = PageController(initialPage: 0);
   bool _canScroll = true;
+  Future<File>? _modelFile;
+  final cache = CacheContainer();
   
   @override
 void initState(){
@@ -23,7 +30,7 @@ void initState(){
   controller.logger = (data) {
       logs.add(data.toString());
     }; 
-  Future.delayed(const Duration(seconds: 2), () {
+  Future.delayed(const Duration(seconds: 8), () {
       if (_canScroll) {
         _pageController.animateToPage(1, duration: const Duration(seconds: 1), curve: Curves.linearToEaseOut);
         setState(() {
@@ -31,6 +38,7 @@ void initState(){
         });
       }
   });
+  _modelFile = cache.loadCachedModel();
 }
 
 @override
@@ -78,14 +86,31 @@ void initState(){
             SizedBox(
               width: double.infinity,
               height: MediaQuery.of(context).size.height * 0.7,
-              child: O3D(
-                controller: controller,
-                src: "assets/models/glass2.glb",
-                autoPlay: false,
-                cameraControls: cameraControls,
-                loading: Loading.eager,
-                )
-              )
+              child: FutureBuilder<File>(
+                future: _modelFile,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                  if (snapshot.hasError) {
+                    return const Center(child: Text("Error loading model"));
+                  }
+                  if (snapshot.hasData) {
+                    return O3D(
+                      controller: controller,
+                      src: snapshot.data!.path,
+                      autoPlay: false,
+                      cameraControls: cameraControls,
+                      loading: Loading.auto,
+                      debugLogging: true,
+                      disablePan: false,
+                      disableTap: false,
+                    );
+                  }
+                  return const Center(child: Text("Error loading model"));
+                },
+              ),
+            )
           ],
         ),
       ),
