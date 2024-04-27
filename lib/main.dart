@@ -19,8 +19,7 @@ void main() async {
   await Hive.openBox<ExerciseModel>('exerciseBox');
   await Hive.openBox<WorkoutModel>('workoutBox');
   init();
-
-  runApp(const MainApp());  
+  runApp(const MainApp()); 
 }
 
 class MainApp extends StatefulWidget {
