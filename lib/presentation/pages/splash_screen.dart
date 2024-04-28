@@ -3,7 +3,19 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
  import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
+import 'package:gym_mirror/cache_container.dart';
 import 'package:gym_mirror/router/router.dart';
+import 'package:o3d/o3d.dart';
+
+Future<void> initializeO3D() async {
+  final cache = CacheContainer();
+  // Load your O3D model and configure the controller here
+  final controller = O3DController();
+  final modelFile = await cache.loadCachedModel();
+  final src = modelFile!.path;
+  // ... other O3D configuration
+  return;
+}
 
  @RoutePage()
 class SplashScreen extends StatefulWidget {
@@ -28,9 +40,8 @@ class _SplashScreenState extends State<SplashScreen> {
     precacheImage(backgroundImage.image, context);
     Timer(const Duration(seconds: 5),
         () => AutoRouter.of(context).pushAll([          
-          const EnterNameRoute(),
+          const HomeRoute(),
           const GreetingRoute(),
-          
         ]
       )
     );
