@@ -10,6 +10,7 @@ import 'package:gym_mirror/presentation/widgets/onboarding_input_field.dart';
 import 'package:gym_mirror/presentation/widgets/onboarding_progress_bar.dart';
 import 'package:gym_mirror/router/router.dart';
 import 'package:numberpicker/numberpicker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 @RoutePage()
 class OnboardingScreen extends StatefulWidget {
@@ -47,7 +48,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   void userCreate() {
     _userBloc.add(CreateUserEvent(User(
-        id: 99,
+        id: 1,
         name: nameController.text,
         height: int.parse(heightController.text),
         weight: int.parse(weightController.text))));
@@ -109,8 +110,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     } else {
                       setState(() {
                         userCreate();
+                        SharedPreferences.getInstance().then((prefs) => prefs.setBool('onboarded', true));
                         Future.delayed(const Duration(milliseconds: 1500), () {
-                          context.router.replace(const HomeRoute());
+                          context.router.push(const HomeRoute());
                         });
                       });
                     }

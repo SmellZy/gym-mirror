@@ -25,6 +25,7 @@ dependencies:
   #Cache dependencies
   flutter_cache_manager: ^3.3.1
   asset_cache: ^2.1.0
+  shared_preferences: ^2.2.3
   
   #UI dependencies
 
