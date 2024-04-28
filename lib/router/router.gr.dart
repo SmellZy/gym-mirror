@@ -15,16 +15,28 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
-    EnterNameRoute.name: (routeData) {
+    AnimationRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const EnterNamePage(),
+        child: const AnimationPage(),
       );
     },
     GreetingRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const GreetingPage(),
+      );
+    },
+    HomeRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const HomeScreen(),
+      );
+    },
+    OnboardingRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const OnboardingScreen(),
       );
     },
     SplashRoute.name: (routeData) {
@@ -37,15 +49,15 @@ abstract class _$AppRouter extends RootStackRouter {
 }
 
 /// generated route for
-/// [EnterNamePage]
-class EnterNameRoute extends PageRouteInfo<void> {
-  const EnterNameRoute({List<PageRouteInfo>? children})
+/// [AnimationPage]
+class AnimationRoute extends PageRouteInfo<void> {
+  const AnimationRoute({List<PageRouteInfo>? children})
       : super(
-          EnterNameRoute.name,
+          AnimationRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'EnterNameRoute';
+  static const String name = 'AnimationRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -60,6 +72,34 @@ class GreetingRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'GreetingRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [HomeScreen]
+class HomeRoute extends PageRouteInfo<void> {
+  const HomeRoute({List<PageRouteInfo>? children})
+      : super(
+          HomeRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'HomeRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [OnboardingScreen]
+class OnboardingRoute extends PageRouteInfo<void> {
+  const OnboardingRoute({List<PageRouteInfo>? children})
+      : super(
+          OnboardingRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'OnboardingRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
