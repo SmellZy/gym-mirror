@@ -5,14 +5,12 @@ import 'package:gym_mirror/presentation/bloc/user/user_bloc.dart';
 class OnboardingButton extends StatelessWidget {
    const OnboardingButton({
     super.key,
-    this.Controller,
     this.onPressed,
     this.textColor,
     required this.borderColor,
     required this.buttonText
   });
 
-  final TextEditingController? Controller;
   final Function? onPressed;
   final String buttonText;
   final Color? textColor;

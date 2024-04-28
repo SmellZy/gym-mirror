@@ -112,7 +112,7 @@ class GreetingButton extends StatelessWidget {
               duration: const Duration(seconds: 1),
               curve: Curves.linearToEaseOut);
         } else {
-          AutoRouter.of(context).push(const EnterNameRoute());
+          AutoRouter.of(context).push(const OnboardingRoute());
         }
       },
       child: Text(
