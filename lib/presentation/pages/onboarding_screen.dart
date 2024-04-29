@@ -57,73 +57,76 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
         body: BackgroundContainer(
       backgroundImage: const AssetImage("assets/background/third_gradient.png"),
       child: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(right: 25),
-              child: ProgressBar(
-                percent: proggressPercent,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(right: 25),
+                child: ProgressBar(
+                  percent: proggressPercent,
+                ),
               ),
-            ),
-            const SizedBox(height: 200),
-            SizedBox(
-              height: 200,
-              child: PageView(
-                controller: _pageController,
-                physics: const NeverScrollableScrollPhysics(),
-                children: [
-                  OnboardingName(nameController: nameController),
-                  OnboardingHeight(heightController: heightController),
-                  OnboardingWeight(
-                    weightController: weightController,
-                  )
-                ],
+              const SizedBox(height: 200),
+              SizedBox(
+                height: 200,
+                child: PageView(
+                  controller: _pageController,
+                  physics: const NeverScrollableScrollPhysics(),
+                  children: [
+                    OnboardingName(nameController: nameController),
+                    OnboardingHeight(heightController: heightController),
+                    OnboardingWeight(
+                      weightController: weightController,
+                    )
+                  ],
+                ),
               ),
-            ),
-            Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 50),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.transparent,
-                    shadowColor: Colors.transparent,
-                    animationDuration: const Duration(milliseconds: 0),
-                    enableFeedback: false,
-                    minimumSize: const Size(double.infinity, 47),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30)),
-                    side: BorderSide(
-                      width: 1,
-                      color: Colors.white.withOpacity(0.75),
+              Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 50),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.transparent,
+                      shadowColor: Colors.transparent,
+                      animationDuration: const Duration(milliseconds: 0),
+                      enableFeedback: false,
+                      minimumSize: const Size(double.infinity, 47),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30)),
+                      side: BorderSide(
+                        width: 1,
+                        color: Colors.white.withOpacity(0.75),
+                      ),
                     ),
-                  ),
-                  onPressed: () {
-                    proggressPercent += 0.3;
-                    if (!_isLastPage) {
-                      _pageController.nextPage(
-                          duration: const Duration(microseconds: 10),
-                          curve: Curves.linear);
-                    } else {
-                      setState(() {
-                        userCreate();
-                        SharedPreferences.getInstance().then((prefs) => prefs.setBool('onboarded', true));
-                        Future.delayed(const Duration(milliseconds: 1500), () {
-                          context.router.push(const MainRoute());
+                    onPressed: () {
+                      proggressPercent += 0.3;
+                      if (!_isLastPage) {
+                        _pageController.nextPage(
+                            duration: const Duration(microseconds: 10),
+                            curve: Curves.linear);
+                      } else {
+                        setState(() {
+                          userCreate();
+                          SharedPreferences.getInstance().then((prefs) => prefs.setBool('onboarded', true));
+                          Future.delayed(const Duration(milliseconds: 1500), () {
+                            context.router.push(const MainRoute());
+                          });
                         });
-                      });
-                    }
-                  },
-                  child: Text(
-                    _isLastPage ? "Start" : "Next",
-                    style: const TextStyle(
-                        color: Color.fromARGB(255, 195, 195, 195)),
-                  ),
-                )),
-          ],
+                      }
+                    },
+                    child: Text(
+                      _isLastPage ? "Start" : "Next",
+                      style: const TextStyle(
+                          color: Color.fromARGB(255, 195, 195, 195)),
+                    ),
+                  )),
+            ],
+          ),
         ),
       ),
     ));
