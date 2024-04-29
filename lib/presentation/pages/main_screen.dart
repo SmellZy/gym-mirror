@@ -1,12 +1,8 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:gym_mirror/domain/repositories/user_repository.dart';
 import 'package:gym_mirror/presentation/bloc/user/user_bloc.dart';
-import 'package:gym_mirror/presentation/widgets/background_container.dart';
 import 'package:gym_mirror/router/router.dart';
 
 @RoutePage()
@@ -35,9 +31,9 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return AutoTabsRouter(
       routes: const [
-        HomeRoute(), 
-        WorkoutRoute(), 
-        WikiRoute(), 
+        HomeRoute(),
+        WorkoutRoute(),
+        WikiRoute(),
         AnalyticsRoute()
       ],
       builder: (context, child) {
@@ -47,7 +43,8 @@ class _MainScreenState extends State<MainScreen> {
           body: Stack(children: [
             child,
             Align(
-                alignment: Alignment.bottomCenter, child: _navigationBar(currentTabIndex, tabsRouter))
+                alignment: Alignment.bottomCenter,
+                child: _navigationBar(currentTabIndex, tabsRouter))
           ]),
         );
       },
@@ -73,21 +70,26 @@ class _MainScreenState extends State<MainScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          _navigationBarItem("assets/icons/home_icon.png", "Home", 0, currentTabIndex, tabsRouter),
-          _navigationBarItem("assets/icons/workout_icon.png", "Workout", 1, currentTabIndex, tabsRouter),
-          _navigationBarItem("assets/icons/analytics_icon.png", "Analytics", 2, currentTabIndex, tabsRouter),
-          _navigationBarItem("assets/icons/profile_icon.png", "Profile", 3, currentTabIndex, tabsRouter),
+          _navigationBarItem("assets/icons/home_icon.png", "Home", 0,
+              currentTabIndex, tabsRouter),
+          _navigationBarItem("assets/icons/workout_icon.png", "Workout", 1,
+              currentTabIndex, tabsRouter),
+          _navigationBarItem("assets/icons/analytics_icon.png", "Analytics", 2,
+              currentTabIndex, tabsRouter),
+          _navigationBarItem("assets/icons/profile_icon.png", "Profile", 3,
+              currentTabIndex, tabsRouter),
         ],
       ),
     );
   }
 
-  void _openPage(int index, TabsRouter tabsRouter){
+  void _openPage(int index, TabsRouter tabsRouter) {
     setState(() => selectedPageIndex = index);
-  tabsRouter.setActiveIndex(index);
+    tabsRouter.setActiveIndex(index);
   }
 
-  Widget _navigationBarItem(String iconSrc, String text, int index, int currentTabIndex, TabsRouter tabsRouter) {
+  Widget _navigationBarItem(String iconSrc, String text, int index,
+      int currentTabIndex, TabsRouter tabsRouter) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
       width: currentTabIndex == index ? 120 : 65,
@@ -110,7 +112,8 @@ class _MainScreenState extends State<MainScreen> {
                   width: 25,
                   height: 25,
                   iconSrc,
-                  color: currentTabIndex == index ? Colors.black : Colors.white),
+                  color:
+                      currentTabIndex == index ? Colors.black : Colors.white),
               onPressed: null, // Remove onPressed from IconButton
             ),
             Expanded(
