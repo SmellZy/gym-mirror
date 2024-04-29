@@ -112,7 +112,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         userCreate();
                         SharedPreferences.getInstance().then((prefs) => prefs.setBool('onboarded', true));
                         Future.delayed(const Duration(milliseconds: 1500), () {
-                          context.router.push(const HomeRoute());
+                          context.router.push(const MainRoute());
                         });
                       });
                     }
