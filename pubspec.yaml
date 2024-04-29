@@ -53,6 +53,7 @@ flutter:
     - assets/background/
     - assets/fonts/
     - assets/models/
+    - assets/icons/
 
   fonts:
     - family: Outer-Sans
