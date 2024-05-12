@@ -12,87 +12,75 @@ class GreetingPage extends StatefulWidget {
 }
 
 class _GreetingPageState extends State<GreetingPage> {
-  final PageController _pageController = PageController(initialPage: 0);
-  bool _isLastPage = false;
-
   @override
   void initState() {
     super.initState();
-    _pageController.addListener(() {
-      setState(() {
-        _isLastPage = _pageController.page!.toInt() == 2;
-      });
-    });
   }
 
   @override
   void dispose() {
-    _pageController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BackgroundContainer(
-      backgroundImage: const AssetImage("assets/background/first_gradient.png"),
-      child: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(height: 20),
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 1,
-              height: 145,
-              child: PageView(
-                  scrollDirection: Axis.horizontal,
-                  controller: _pageController,
-                  physics: const NeverScrollableScrollPhysics(),
-                  children: const [
-                    HiMyNameIsIOText(),
-                    IWillHellpYouText(),
-                    AnswerQuestions()
-                  ]),
+    return AutoTabsRouter(
+      routes: const [
+        GreetingFirstRoute(),
+        GreetingSecondRoute(),
+        GreetingThirdRoute()
+      ],
+      builder: (context, child) {
+        final tabsRouter = AutoTabsRouter.of(context);
+        final currentTabIndex = tabsRouter.activeIndex;
+        return BackgroundContainer(
+          backgroundImage:
+              const AssetImage("assets/background/first_gradient.png"),
+          child: SafeArea(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const SizedBox(height: 20),
+                Expanded(child: child),
+                SizedBox(
+                  width: double.infinity,
+                  height: MediaQuery.of(context).size.height * 0.68,
+                  child: Stack(
+                      alignment: AlignmentDirectional.bottomCenter,
+                      children: [
+                        Image.asset(
+                          "assets/img/greeting.png",
+                          fit: BoxFit.cover,
+                          height: double.infinity,
+                        ),
+                        Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 60),
+                            child: GreetingButton(
+                                index: currentTabIndex,
+                                tabsRouter: tabsRouter)),
+                      ]),
+                )
+              ],
             ),
-            SizedBox(
-              width: double.infinity,
-              height: MediaQuery.of(context).size.height * 0.71,
-              child: Stack(
-                alignment: AlignmentDirectional.bottomCenter,
-                children: [
-                  Image.asset(
-                    "assets/img/greeting.png",
-                    fit: BoxFit.cover,
-                    height: double.infinity,
-                  ),
-                  Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 60),
-                      child: GreetingButton(
-                          isLastPage: _isLastPage,
-                          pageController: _pageController))
-                ],
-              ),
-            )
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }
 
 class GreetingButton extends StatelessWidget {
-  const GreetingButton({
-    super.key,
-    required bool isLastPage,
-    required PageController pageController,
-  })  : _isLastPage = isLastPage,
-        _pageController = pageController;
+  const GreetingButton(
+      {Key? key, required this.index, required this.tabsRouter})
+      : super(key: key);
 
-  final bool _isLastPage;
-  final PageController _pageController;
+  final int index;
+  final TabsRouter tabsRouter;
 
   @override
   Widget build(BuildContext context) {
+    final isLast = index == tabsRouter.pageCount - 1;
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.transparent,
@@ -107,120 +95,16 @@ class GreetingButton extends StatelessWidget {
         ),
       ),
       onPressed: () {
-        if (!_isLastPage) {
-          _pageController.nextPage(
-              duration: const Duration(seconds: 1),
-              curve: Curves.linearToEaseOut);
+        if (!isLast) {
+          tabsRouter.setActiveIndex(index + 1);
         } else {
           AutoRouter.of(context).push(const OnboardingRoute());
         }
       },
       child: Text(
-        !_isLastPage ? "Next" : "Start",
+        isLast ? "Start" : "Next",
         style: const TextStyle(color: Color.fromARGB(192, 9, 9, 9)),
       ),
     );
-  }
-}
-
-class HiMyNameIsIOText extends StatelessWidget {
-  const HiMyNameIsIOText({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return RichText(
-        textAlign: TextAlign.center,
-        text: const TextSpan(children: [
-          TextSpan(
-              text: "Hi!\n",
-              style: TextStyle(
-                  fontSize: 36,
-                  fontFamily: "Outer-Sans",
-                  fontWeight: FontWeight.w200)),
-          TextSpan(
-              text: "My name is ",
-              style: TextStyle(
-                  fontSize: 36,
-                  fontFamily: "Outer-Sans",
-                  fontWeight: FontWeight.w200)),
-          TextSpan(
-              text: "IO.",
-              style: TextStyle(
-                  fontSize: 36,
-                  fontFamily: "Outer-Sans",
-                  fontWeight: FontWeight.bold))
-        ]));
-  }
-}
-
-class IWillHellpYouText extends StatelessWidget {
-  const IWillHellpYouText({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return RichText(
-        textAlign: TextAlign.center,
-        text: const TextSpan(children: [
-          TextSpan(
-              text: "I will help you \n",
-              style: TextStyle(
-                  fontSize: 36,
-                  fontFamily: "Outer-Sans",
-                  fontWeight: FontWeight.w200)),
-          TextSpan(
-              text: "with ",
-              style: TextStyle(
-                  fontSize: 36,
-                  fontFamily: "Outer-Sans",
-                  fontWeight: FontWeight.w200)),
-          TextSpan(
-              text: "exercises!",
-              style: TextStyle(
-                  fontSize: 36,
-                  fontFamily: "Outer-Sans",
-                  fontWeight: FontWeight.bold))
-        ]));
-  }
-}
-
-class AnswerQuestions extends StatelessWidget {
-  const AnswerQuestions({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return RichText(
-        textAlign: TextAlign.center,
-        text: const TextSpan(children: [
-          TextSpan(
-              text: "Answer ",
-              style: TextStyle(
-                  fontSize: 36,
-                  fontFamily: "Outer-Sans",
-                  fontWeight: FontWeight.w200)),
-          TextSpan(
-              text: "5 questions \n",
-              style: TextStyle(
-                  fontSize: 36,
-                  fontFamily: "Outer-Sans",
-                  fontWeight: FontWeight.bold)),
-          TextSpan(
-              text: "before we start our \n",
-              style: TextStyle(
-                  fontSize: 36,
-                  fontFamily: "Outer-Sans",
-                  fontWeight: FontWeight.w200)),
-          TextSpan(
-              text: "first training",
-              style: TextStyle(
-                  fontSize: 36,
-                  fontFamily: "Outer-Sans",
-                  fontWeight: FontWeight.bold))
-        ]));
   }
 }

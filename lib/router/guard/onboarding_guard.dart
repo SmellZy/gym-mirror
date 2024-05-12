@@ -6,11 +6,11 @@ class OnboardingGuard extends AutoRouteGuard {
   @override
   void onNavigation(NavigationResolver resolver, StackRouter router) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool onboarded = prefs.getBool("onboarded") ?? false;
+    bool onboarded =  prefs.getBool("onboarded") ?? false;
     if (onboarded == true) {
       resolver.next(true);
     } else {
-      router.push(const OnboardingRoute());
+      router.push(const GreetingRoute());
     }
   }
 }

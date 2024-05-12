@@ -15,11 +15,12 @@ void main() async {
   Hive.registerAdapter(UserModelAdapter());
   Hive.registerAdapter(WorkoutModelAdapter());
   Hive.registerAdapter(ExerciseModelAdapter());
-  await Hive.openBox<UserModel>('userBox');
+  var user = await Hive.openBox<UserModel>('userBox');
   await Hive.openBox<ExerciseModel>('exerciseBox');
   await Hive.openBox<WorkoutModel>('workoutBox');
   init();
-  runApp(const MainApp()); 
+  runApp(const MainApp());
+  user.clear();
 }
 
 class MainApp extends StatefulWidget {

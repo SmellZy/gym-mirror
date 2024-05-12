@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
+import 'package:gym_mirror/presentation/pages/greeting_pages/greeting_first_screen.dart';
+import 'package:gym_mirror/presentation/pages/greeting_pages/greeting_second_screen.dart';
+import 'package:gym_mirror/presentation/pages/greeting_pages/greeting_third_screen.dart';
 import 'package:gym_mirror/presentation/pages/main_pages/analytics_page.dart';
 import 'package:gym_mirror/presentation/pages/main_pages/home_page.dart';
 import 'package:gym_mirror/presentation/pages/main_pages/wiki_page.dart';
@@ -28,6 +30,20 @@ class AppRouter extends _$AppRouter {
       path: "/greeting",
       transitionsBuilder: TransitionsBuilders.noTransition,
       durationInMilliseconds: 0,
+      children: [
+        AutoRoute(
+          page: GreetingFirstRoute.page,
+          path: "first"
+        ),
+        AutoRoute(
+          page: GreetingSecondRoute.page,
+          path: "second"
+        ),
+        AutoRoute(
+          page: GreetingThirdRoute.page,
+          path: "third"
+        ),
+      ]
       
       ),
     CustomRoute(
@@ -45,7 +61,7 @@ class AppRouter extends _$AppRouter {
     CustomRoute(
       page: MainRoute.page, 
       path: "/main",
-      transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
+      transitionsBuilder: TransitionsBuilders.fadeIn,
       guards: [OnboardingGuard()],
       children: [
         AutoRoute(

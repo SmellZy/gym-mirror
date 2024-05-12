@@ -27,10 +27,28 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const AnimationPage(),
       );
     },
+    GreetingFirstRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const GreetingFirstPage(),
+      );
+    },
     GreetingRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const GreetingPage(),
+      );
+    },
+    GreetingSecondRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const GreetingSecondPage(),
+      );
+    },
+    GreetingThirdRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const GreetingThirdPage(),
       );
     },
     HomeRoute.name: (routeData) {
@@ -101,6 +119,20 @@ class AnimationRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [GreetingFirstPage]
+class GreetingFirstRoute extends PageRouteInfo<void> {
+  const GreetingFirstRoute({List<PageRouteInfo>? children})
+      : super(
+          GreetingFirstRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'GreetingFirstRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [GreetingPage]
 class GreetingRoute extends PageRouteInfo<void> {
   const GreetingRoute({List<PageRouteInfo>? children})
@@ -110,6 +142,34 @@ class GreetingRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'GreetingRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [GreetingSecondPage]
+class GreetingSecondRoute extends PageRouteInfo<void> {
+  const GreetingSecondRoute({List<PageRouteInfo>? children})
+      : super(
+          GreetingSecondRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'GreetingSecondRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [GreetingThirdPage]
+class GreetingThirdRoute extends PageRouteInfo<void> {
+  const GreetingThirdRoute({List<PageRouteInfo>? children})
+      : super(
+          GreetingThirdRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'GreetingThirdRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
