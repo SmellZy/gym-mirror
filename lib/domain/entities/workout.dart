@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:gym_mirror/data/models/exercise/exercise_model.dart';
 import 'package:gym_mirror/domain/entities/exercise.dart';
 
 enum Difficulty {
@@ -15,7 +16,7 @@ class Workout extends Equatable{
   final int? calories;
   final int? duration;
   final Difficulty? difficulty;
-  final List<Exercise>? exercises;
+  final List<ExerciseModel>? exercises;
 
   Workout(
     {

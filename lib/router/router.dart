@@ -10,7 +10,7 @@ import 'package:gym_mirror/presentation/pages/onboarding_screen.dart';
 import 'package:gym_mirror/presentation/pages/greeting_screen.dart';
 import 'package:gym_mirror/presentation/pages/main_screen.dart';
 import 'package:gym_mirror/presentation/pages/splash_screen.dart';
-import 'package:gym_mirror/presentation/pages/test_anim_screen.dart';
+//import 'package:gym_mirror/presentation/pages/test_anim_screen.dart';
 import 'package:gym_mirror/router/guard/onboarding_guard.dart';
 
 part 'router.gr.dart';
@@ -51,12 +51,6 @@ class AppRouter extends _$AppRouter {
       path: "/createUserName",
       transitionsBuilder: TransitionsBuilders.fadeIn,
       durationInMilliseconds: 1000,
-      ),
-    CustomRoute(
-      page: AnimationRoute.page,
-      path: "/animTest",
-      transitionsBuilder: TransitionsBuilders.fadeIn,
-      durationInMilliseconds: 2000
       ),
     CustomRoute(
       page: MainRoute.page, 

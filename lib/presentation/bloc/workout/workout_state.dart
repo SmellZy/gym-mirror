@@ -16,6 +16,7 @@ class WorkoutUpdating extends WorkoutState {}
 class WorkoutCreating extends WorkoutState {}
 class WorkoutDeleting extends WorkoutState {}
 
+class WrokoutCreated extends WorkoutState {}
 // Loaded States
 class WorkoutsLoaded extends WorkoutState {
   final List<Workout> workouts;

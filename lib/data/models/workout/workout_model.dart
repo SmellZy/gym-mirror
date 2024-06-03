@@ -1,3 +1,4 @@
+import 'package:gym_mirror/data/models/exercise/exercise_model.dart';
 import 'package:gym_mirror/domain/entities/exercise.dart';
 import 'package:gym_mirror/domain/entities/workout.dart';
 import 'package:hive/hive.dart';
@@ -19,7 +20,7 @@ class WorkoutModel {
   @HiveField(5)
   final Difficulty? difficulty;
   @HiveField(6)
-  final List<Exercise>? exercises;
+  final List<ExerciseModel>? exercises;
 
   WorkoutModel(
     {

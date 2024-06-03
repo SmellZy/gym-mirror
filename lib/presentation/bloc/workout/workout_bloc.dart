@@ -48,6 +48,7 @@ class WorkoutBloc extends Bloc<WorkoutEvent, WorkoutState> {
         emit(WorkoutCreating());
       }
       await workoutRepository.createWorkout(event.workout);
+      emit(WrokoutCreated());
       final List<Workout> workouts = await workoutRepository.getWorkouts();
       emit(WorkoutsLoaded(workouts));
     } catch (error) {

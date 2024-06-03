@@ -37,6 +37,4 @@ class WorkoutRepositoryImpl implements WorkoutRepository {
     final workoutModel = WorkoutModel.fromEntity(workout);
     localDatasource.updateWorkout(workoutModel);
   }
-
-  
 }

@@ -16,9 +16,13 @@ class UserLocalDatasource {
 
   // void updateUser(UserModel user) {}
   Future<void> updateUser(UserModel user) async {
-    final existingUser = userBox.values.firstWhereOrNull((u) => u.id == user.id);
-    if (existingUser != null) {
-      await userBox.putAt(existingUser.id, user);
+    final existingUserKey = userBox.keys.firstWhereOrNull((key) {
+      final existingUser = userBox.get(key);
+      return existingUser != null && existingUser.id == user.id;
+    });
+
+    if (existingUserKey != null) {
+      await userBox.put(existingUserKey, user);
     } else {
       log('User not found in local storage');
     }
