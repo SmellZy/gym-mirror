@@ -1,13 +1,5 @@
-import 'dart:math';
-import 'dart:ui';
-
 import 'package:auto_route/auto_route.dart';
-import 'package:bottom_sheet/bottom_sheet.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:gym_mirror/data/models/exercise/exercise_model.dart';
@@ -15,10 +7,7 @@ import 'package:gym_mirror/domain/entities/exercise.dart';
 import 'package:gym_mirror/domain/entities/workout.dart';
 import 'package:gym_mirror/domain/repositories/exercise_repository.dart';
 import 'package:gym_mirror/domain/repositories/workout_repository.dart';
-import 'package:gym_mirror/domain/usecases/workout/create_workout.dart';
-import 'package:gym_mirror/domain/usecases/workout/get_workouts.dart';
 import 'package:gym_mirror/presentation/bloc/exercise/exercise_bloc.dart';
-import 'package:gym_mirror/presentation/bloc/user/user_bloc.dart';
 import 'package:gym_mirror/presentation/bloc/workout/workout_bloc.dart';
 import 'package:gym_mirror/presentation/widgets/background_container.dart';
 import 'package:o3d/o3d.dart';
@@ -219,7 +208,7 @@ class _ModalSheetContainerState extends State<ModalSheetContainer> {
                                 itemBuilder: (context, index) {
                                   final workout = state.workouts[index];
                                   return Container(
-                                    margin: EdgeInsets.all(5),
+                                    margin: const EdgeInsets.all(5),
                                     decoration: BoxDecoration(
                                       color: Colors.grey.withOpacity(0.4),
                                       borderRadius: BorderRadius.circular(15)
@@ -227,7 +216,7 @@ class _ModalSheetContainerState extends State<ModalSheetContainer> {
                                     child: ListTile(
                                       title: Text(workout.title ?? ""),
                                       subtitle: Text(workout.description ?? ""),
-                                      trailing: IconButton(icon: Icon(Icons.play_arrow),
+                                      trailing: IconButton(icon: const Icon(Icons.play_arrow),
                                       onPressed: () {}
                                       ),
                                     ),
@@ -263,7 +252,7 @@ class _ModalSheetContainerState extends State<ModalSheetContainer> {
                                                 ),
                                               ));
                                     },
-                                    icon: Icon(Icons.add)),
+                                    icon: const Icon(Icons.add)),
                               ),
                             ),
                           )

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gym_mirror/domain/entities/user.dart';
-import 'package:gym_mirror/presentation/bloc/user/user_bloc.dart';
 
 class OnboardingButton extends StatelessWidget {
    const OnboardingButton({

@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:gym_mirror/data/models/exercise/exercise_model.dart';
-import 'package:gym_mirror/domain/entities/exercise.dart';
 
 enum Difficulty {
   easy,

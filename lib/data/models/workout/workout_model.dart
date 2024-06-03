@@ -1,5 +1,4 @@
 import 'package:gym_mirror/data/models/exercise/exercise_model.dart';
-import 'package:gym_mirror/domain/entities/exercise.dart';
 import 'package:gym_mirror/domain/entities/workout.dart';
 import 'package:hive/hive.dart';
 
