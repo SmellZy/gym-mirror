@@ -38,125 +38,80 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
   final _userBloc = UserBloc(GetIt.I<UserRepository>());
 
   List<_ChartData> chartData = <_ChartData>[];
-  // Future<void> _fetchStepData() async {
-  //   final health = Health();
-  //   health.configure(useHealthConnectIfAvailable: true);
+  Future<void> _fetchStepData() async {
+    final health = Health();
+    health.configure(useHealthConnectIfAvailable: true);
 
-  //   try {
-  //     var types = [
-  //       HealthDataType.STEPS,
-  //       HealthDataType.WEIGHT,
-  //       HealthDataType.HEIGHT,
-  //       HealthDataType.ACTIVE_ENERGY_BURNED,
-  //       HealthDataType.HEART_RATE,
-  //       HealthDataType.WATER
-  //     ];
+    try {
+      var types = [
+        HealthDataType.STEPS,
+        HealthDataType.WEIGHT,
+        HealthDataType.HEIGHT,
+        HealthDataType.ACTIVE_ENERGY_BURNED,
+        HealthDataType.HEART_RATE,
+        HealthDataType.WATER
+      ];
 
-  //     var permissions = [
-  //       HealthDataAccess.READ,
-  //       HealthDataAccess.READ_WRITE,
-  //       HealthDataAccess.READ_WRITE,
-  //       HealthDataAccess.READ_WRITE,
-  //       HealthDataAccess.READ,
-  //       HealthDataAccess.READ,
-  //     ];
+      var permissions = [
+        HealthDataAccess.READ,
+        HealthDataAccess.READ_WRITE,
+        HealthDataAccess.READ_WRITE,
+        HealthDataAccess.READ_WRITE,
+        HealthDataAccess.READ,
+        HealthDataAccess.READ,
+      ];
 
-  //     DateTime now = DateTime.now();
-  //     DateTime start = DateTime(now.year, now.month, now.day);
+      DateTime now = DateTime.now();
+      DateTime start = DateTime(now.year, now.month, now.day);
 
-  //     bool authorized = await health.requestAuthorization(types, permissions: permissions);
-  //     PermissionStatus activityPermissionStatus =  await Permission.activityRecognition.request();
+      bool authorized = await health.requestAuthorization(types, permissions: permissions);
+      PermissionStatus activityPermissionStatus =  await Permission.activityRecognition.request();
 
-  //     // if (authorized) {
-  //     //   // List<HealthDataPoint> _steps = await health.getHealthDataFromTypes(
-  //     //   //   startTime: start, endTime: now, types: [HealthDataType.STEPS]
-  //     //   // );
-  //     //   // List<HealthDataPoint> _weight = await health.getHealthDataFromTypes(
-  //     //   //   startTime: start, endTime: now, types: [HealthDataType.WEIGHT]
-  //     //   // );
-  //     //   // List<HealthDataPoint> _height = await health.getHealthDataFromTypes(
-  //     //   //   startTime: start, endTime: now, types: [HealthDataType.HEIGHT]
-  //     //   // );
-  //     //   // List<HealthDataPoint> _active_energy_burbed = await health.getHealthDataFromTypes(
-  //     //   //   startTime: start, endTime: now, types: [HealthDataType.ACTIVE_ENERGY_BURNED]
-  //     //   // );
-  //     //   // List<HealthDataPoint> _hearth_rate = await health.getHealthDataFromTypes(
-  //     //   //   startTime: start, endTime: now, types: [HealthDataType.HEART_RATE]
-  //     //   // );
-  //     //   // List<HealthDataPoint> _water = await health.getHealthDataFromTypes(
-  //     //   //   startTime: start, endTime: now, types: [HealthDataType.WATER]
-  //     //   // );
+      if (authorized) {
+        List<HealthDataPoint> _steps = await health.getHealthDataFromTypes(
+          startTime: start, endTime: now, types: [HealthDataType.STEPS]
+        );
+        List<HealthDataPoint> _weight = await health.getHealthDataFromTypes(
+          startTime: start, endTime: now, types: [HealthDataType.WEIGHT]
+        );
+        List<HealthDataPoint> _height = await health.getHealthDataFromTypes(
+          startTime: start, endTime: now, types: [HealthDataType.HEIGHT]
+        );
+        List<HealthDataPoint> _active_energy_burbed = await health.getHealthDataFromTypes(
+          startTime: start, endTime: now, types: [HealthDataType.ACTIVE_ENERGY_BURNED]
+        );
+        List<HealthDataPoint> _hearth_rate = await health.getHealthDataFromTypes(
+          startTime: start, endTime: now, types: [HealthDataType.HEART_RATE]
+        );
+        List<HealthDataPoint> _water = await health.getHealthDataFromTypes(
+          startTime: start, endTime: now, types: [HealthDataType.WATER]
+        );
 
         
-  //     //   int? todaySteps = await health.getTotalStepsInInterval(start, now);
+        int? todaySteps = await health.getTotalStepsInInterval(start, now);
 
-  //     //   setState(() {
-  //     //     //log(_weight.toString());
-  //     //     totalSteps = todaySteps ?? 0;
-  //     //     // steps = _steps;
-  //     //     // weight = _weight;
-  //     //     // height = _height;
-  //     //     // activeEnergy = _active_energy_burbed;
-  //     //     // hearthRate = _hearth_rate;
-  //     //     // water = _water;
-  //     //     stepsProgress = ((todaySteps ?? 0) / stepsGoal * 100).toInt();
-  //     //     Color stepsColor = _getStepsColor(stepsProgress);
-  //     //     chartData = [_ChartData("Steps", todaySteps ?? 0, stepsColor)];
-  //     //   });
-  //     // } else {
-  //     //   log("Authorization not granted");
-  //     // }
-
-  //     if (Platform.isIOS || activityPermissionStatus == PermissionStatus.granted) {
-  //        List<HealthDataPoint> healthData =
-  //           await health.getHealthDataFromTypes(startTime: start, endTime: now, types: types);
-  //       final userData = healthData
-  //         .where((dataPoint) => dataPoint.type == HealthDataType.WEIGHT);
-  //         if (userData.isNotEmpty) {
-  //             for (var item in userData) {
-  //             print(item);
-  //          }
-  //         } else {}
-  //     }
-
-  //   } catch (e) {
-  //     log("Error: $e");
-  //   }
-  // }
-
-  Future<void> getSleepData() async{
-    final types = [
-      HealthDataType.WEIGHT,
-      HealthDataType.HEIGHT
-    ];
-
-    final permissions = [
-      HealthDataAccess.READ_WRITE,
-      HealthDataAccess.READ_WRITE
-    ];
-    DateTime now = DateTime.now();
-    DateTime start = DateTime(now.year, now.month, now.day);
-
-    Health health = Health();
-
-    await health.requestAuthorization(types, permissions: permissions);
-
-    PermissionStatus activityPermissionStatus =  await Permission.activityRecognition.request();
-
-    if (Platform.isIOS || activityPermissionStatus == PermissionStatus.granted) {
-         List<HealthDataPoint> healthData =
-            await health.getHealthDataFromTypes(startTime: start, endTime: now, types: types);
-        final weightData = healthData
-          .where((dataPoint) => dataPoint.type == HealthDataType.WEIGHT);
-          if (weightData.isNotEmpty) {
-              for (var item in weightData) {
-              print(item);
-           }
+        setState(() {
+          log(_weight.toString());
+          totalSteps = todaySteps ?? 0;
+          steps = _steps;
+          weight = _weight;
+          height = _height;
+          activeEnergy = _active_energy_burbed;
+          hearthRate = _hearth_rate;
+          water = _water;
+          stepsProgress = ((todaySteps ?? 0) / stepsGoal * 100).toInt();
+          Color stepsColor = _getStepsColor(stepsProgress);
+          chartData = [_ChartData("Steps", todaySteps ?? 0, stepsColor)];
+        });
       } else {
-        print('No sleep data available for the specified day.');
+        log("Authorization not granted");
       }
+
+    } catch (e) {
+      log("Error: $e");
     }
   }
+
 
   Color _getStepsColor(int stepsProgress) {
           if (stepsProgress < 10) {
@@ -177,8 +132,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
 
   @override
   void initState() {
-    //_fetchStepData();
-    getSleepData();
+    _fetchStepData();
     _userBloc.add(GetUserEvent());
     log(weight.toString());
     log(height.toString());
