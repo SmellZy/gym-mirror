@@ -13,6 +13,7 @@ class User extends Equatable{
   final DateTime? birthday;
   final int? height;
   final int? weight;
+  final List<int>? weightHistory;
   final int? dayStreak;
   final List<Workout>? workoutHistory;
   final FitnessLevel? fitnessLevel;
@@ -24,6 +25,7 @@ class User extends Equatable{
       this.birthday, 
       this.height, 
       this.weight,
+      this.weightHistory,
       this.dayStreak,
       this.workoutHistory,
       this.fitnessLevel,
@@ -31,5 +33,5 @@ class User extends Equatable{
   );
   
   @override
-  List<Object?> get props => [id, name, birthday, height, weight, dayStreak, workoutHistory, fitnessLevel];
+  List<Object?> get props => [id, name, birthday, height, weight, weightHistory, dayStreak, workoutHistory, fitnessLevel];
 }

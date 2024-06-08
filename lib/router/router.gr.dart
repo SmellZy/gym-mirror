@@ -75,6 +75,26 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const WikiPage(),
       );
     },
+    WorkoutFinalRoute.name: (routeData) {
+      final args = routeData.argsAs<WorkoutFinalRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: WorkoutFinalScreen(
+          key: args.key,
+          workout: args.workout,
+        ),
+      );
+    },
+    WorkoutInitialRoute.name: (routeData) {
+      final args = routeData.argsAs<WorkoutInitialRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: WorkoutInitialScreen(
+          key: args.key,
+          workout: args.workout,
+        ),
+      );
+    },
     WorkoutRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -222,6 +242,82 @@ class WikiRoute extends PageRouteInfo<void> {
   static const String name = 'WikiRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [WorkoutFinalScreen]
+class WorkoutFinalRoute extends PageRouteInfo<WorkoutFinalRouteArgs> {
+  WorkoutFinalRoute({
+    Key? key,
+    required Workout workout,
+    List<PageRouteInfo>? children,
+  }) : super(
+          WorkoutFinalRoute.name,
+          args: WorkoutFinalRouteArgs(
+            key: key,
+            workout: workout,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'WorkoutFinalRoute';
+
+  static const PageInfo<WorkoutFinalRouteArgs> page =
+      PageInfo<WorkoutFinalRouteArgs>(name);
+}
+
+class WorkoutFinalRouteArgs {
+  const WorkoutFinalRouteArgs({
+    this.key,
+    required this.workout,
+  });
+
+  final Key? key;
+
+  final Workout workout;
+
+  @override
+  String toString() {
+    return 'WorkoutFinalRouteArgs{key: $key, workout: $workout}';
+  }
+}
+
+/// generated route for
+/// [WorkoutInitialScreen]
+class WorkoutInitialRoute extends PageRouteInfo<WorkoutInitialRouteArgs> {
+  WorkoutInitialRoute({
+    Key? key,
+    required Workout workout,
+    List<PageRouteInfo>? children,
+  }) : super(
+          WorkoutInitialRoute.name,
+          args: WorkoutInitialRouteArgs(
+            key: key,
+            workout: workout,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'WorkoutInitialRoute';
+
+  static const PageInfo<WorkoutInitialRouteArgs> page =
+      PageInfo<WorkoutInitialRouteArgs>(name);
+}
+
+class WorkoutInitialRouteArgs {
+  const WorkoutInitialRouteArgs({
+    this.key,
+    required this.workout,
+  });
+
+  final Key? key;
+
+  final Workout workout;
+
+  @override
+  String toString() {
+    return 'WorkoutInitialRouteArgs{key: $key, workout: $workout}';
+  }
 }
 
 /// generated route for

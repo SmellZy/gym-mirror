@@ -22,6 +22,8 @@ class UserModel {
   final List<Workout>? workoutHistory;
   @HiveField(7)
   final FitnessLevel? fitnessLevel;
+  @HiveField(8)
+  final List<int>? weigthHistory;
 
   UserModel(
     {
@@ -32,7 +34,8 @@ class UserModel {
       this.weight,
       this.dayStreak,
       this.workoutHistory,
-      this.fitnessLevel
+      this.fitnessLevel,
+      this.weigthHistory
     }
   );
 
@@ -46,7 +49,8 @@ class UserModel {
     weight: user.weight,
     dayStreak: user.dayStreak,
     workoutHistory: user.workoutHistory,
-    fitnessLevel: user.fitnessLevel
+    fitnessLevel: user.fitnessLevel,
+    weigthHistory: user.weightHistory
   );
 
   //Convertion from model to entity
@@ -58,6 +62,7 @@ class UserModel {
     weight: weight,
     dayStreak: dayStreak,
     workoutHistory: workoutHistory,
-    fitnessLevel: fitnessLevel
+    fitnessLevel: fitnessLevel,
+    weightHistory: weigthHistory
   );
 }

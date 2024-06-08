@@ -14,7 +14,7 @@ class Workout extends Equatable{
   final String? description;
   final int? calories;
   final int? duration;
-  final Difficulty? difficulty;
+  final String? difficulty;
   final List<ExerciseModel>? exercises;
 
   Workout(

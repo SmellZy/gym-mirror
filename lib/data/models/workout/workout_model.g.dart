@@ -22,7 +22,7 @@ class WorkoutModelAdapter extends TypeAdapter<WorkoutModel> {
       description: fields[2] as String?,
       calories: fields[3] as int?,
       duration: fields[4] as int?,
-      difficulty: fields[5] as Difficulty?,
+      difficulty: fields[5] as String?,
       exercises: (fields[6] as List?)?.cast<ExerciseModel>(),
     );
   }

@@ -17,9 +17,16 @@ class ExerciseLocalDatasource {
     return exerciseBox.getAt(id);
   }
 
-  void createExercise(ExerciseModel exercise) {
+ void createExercise(ExerciseModel exercise) {
+  bool exerciseExists = exerciseBox.values.any((e) => e.id == exercise.id);
+  if (!exerciseExists) {
     exerciseBox.add(exercise);
+    log('Exercise added with id ${exercise.id}');
+  } else {
+    log('Exercise with id ${exercise.id} already exists.');
   }
+}
+
 
   Future<void> updateExercise(ExerciseModel exercise) async {
   final existingExercise = exerciseBox.values.firstWhereOrNull((w) => w.id == exercise.id);

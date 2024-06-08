@@ -17,7 +17,7 @@ class WorkoutModel {
   @HiveField(4)
   final int? duration;
   @HiveField(5)
-  final Difficulty? difficulty;
+  final String? difficulty;
   @HiveField(6)
   final List<ExerciseModel>? exercises;
 

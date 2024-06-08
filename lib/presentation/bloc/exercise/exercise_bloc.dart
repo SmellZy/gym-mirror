@@ -59,10 +59,7 @@ class ExerciseBloc extends Bloc<ExerciseEvent, ExerciseState> {
 
   Future<void> _onCreateExercise(CreateExerciseEvent event, Emitter<ExerciseState> emit) async {
     try {
-      if (state is! ExercisesLoaded) {
-        emit(ExerciseCreating());
-      }
-
+      emit(ExerciseCreating());
       await exerciseRepository.createExercise(event.exercise);
       final List<Exercise> exercises = await exerciseRepository.getExercises();
       emit(ExercisesLoaded(exercises));
