@@ -229,6 +229,7 @@ class _WorkoutFinalScreenState extends State<WorkoutFinalScreen> {
                                       difficulty: widget.workout.difficulty,
                                       exercises: widget.workout.exercises,
                                     );
+                                    log(workoutModel.difficulty.toString());
 
                                     final finishedWorkout = FinishedWorkoutModel(
                                         id: nextId,
@@ -237,12 +238,9 @@ class _WorkoutFinalScreenState extends State<WorkoutFinalScreen> {
 
                                     
                                     workoutList.add(finishedWorkout);
-                                    log("Workout List: ${workoutList.toString()}");
+                                    log(finishedWorkout.date.toString());
                                     weightHistory.add(weight);
-                                    log("Weight History: ${weightHistory.toString()}");
                                     dayStreak += 1;
-                                    log("Day streak: ${dayStreak.toString()}");
-                                    log("Workout: ${widget.workout.toString()}");
                                     User user = User(
                                       id: currentUser.id,
                                       name: state.user.name,
@@ -256,7 +254,6 @@ class _WorkoutFinalScreenState extends State<WorkoutFinalScreen> {
                                       workoutHistory: workoutList,
                                       weightHistory: weightHistory,
                                     );
-                                    log("User: $user");
                                     userBloc.add(UpdateUserEvent(user));
                                     userBloc.stream.listen((state) {
                                       if (state is UserLoading) {

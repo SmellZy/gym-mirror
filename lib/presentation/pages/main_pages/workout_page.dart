@@ -106,7 +106,6 @@ class _WorkoutPageState extends State<WorkoutPage> {
                                               width: 2, color: Colors.grey),
                                           borderRadius:
                                               BorderRadius.circular(20),
-                                              //color: Colors.grey.withOpacity(0.3),
                                           gradient:  LinearGradient(
                                             colors: [
                                               Colors.grey.withOpacity(0.3),

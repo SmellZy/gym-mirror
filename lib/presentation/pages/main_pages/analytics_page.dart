@@ -4,26 +4,40 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:gym_mirror/data/models/finished_workout/finished_workout_model.dart';
+import 'package:gym_mirror/data/models/workout/workout_model.dart';
+import 'package:gym_mirror/domain/entities/finished_workout.dart';
 import 'package:gym_mirror/domain/entities/user.dart';
+import 'package:gym_mirror/domain/entities/workout.dart';
+import 'package:gym_mirror/domain/repositories/finished_workout_repository.dart';
 import 'package:gym_mirror/domain/repositories/user_repository.dart';
+import 'package:gym_mirror/domain/repositories/workout_repository.dart';
+import 'package:gym_mirror/presentation/bloc/finished_workout/finished_workout_bloc.dart';
 import 'package:gym_mirror/presentation/bloc/user/user_bloc.dart';
+import 'package:gym_mirror/presentation/bloc/workout/workout_bloc.dart';
 import 'package:gym_mirror/presentation/widgets/background_container.dart';
 import 'package:gym_mirror/presentation/widgets/line_chart.dart';
+import 'package:gym_mirror/presentation/widgets/weight_proggress_bar.dart';
 import 'package:health/health.dart';
 import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 @RoutePage()
 class AnalyticsPage extends StatefulWidget {
-  const AnalyticsPage({super.key,});
+  const AnalyticsPage({
+    super.key,
+  });
 
-  
   @override
   State<AnalyticsPage> createState() => _AnalyticsPageState();
 }
 
 class _AnalyticsPageState extends State<AnalyticsPage> {
   final userBloc = UserBloc(GetIt.I<UserRepository>());
+  final finishedWorkoutBloc =
+      FinishedWorkoutBloc(GetIt.I<FinishedWorkoutRepository>());
+  final workoutBloc = WorkoutBloc(GetIt.I<WorkoutRepository>());
+
   List<HealthDataPoint> steps = [];
   List<HealthDataPoint> weight = [];
   List<HealthDataPoint> height = [];
@@ -300,10 +314,30 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
     );
   }
 
+  Color _getColorForDifficulty(String difficulty) {
+  switch (difficulty) {
+    case 'Easy':
+      return Colors.green;
+    case 'Medium':
+      return Colors.yellow;
+    case 'Hard':
+      return Colors.red;
+    case 'Expert':
+      return Colors.purple;
+    default:
+      return const Color.fromARGB(255, 169, 169, 169); // Default color
+  }
+}
+
+String formatDate(DateTime date) {
+  return DateFormat('MMMM d, y').format(date);
+}
+
   @override
   Widget build(BuildContext context) {
     final deviceWidth = MediaQuery.of(context).size.width;
     final deviceHeight = MediaQuery.of(context).size.height;
+    List<WorkoutModel> workouts = [];
     int currentWeight = 0;
     return Scaffold(
       body: BackgroundContainer(
@@ -312,16 +346,23 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(15),
-            child: BlocProvider(
-              create: (context) => userBloc,
+            child: MultiBlocProvider(
+              providers: [
+                BlocProvider(
+                  create: (context) => userBloc,
+                ),
+                BlocProvider(
+                  create: (context) => workoutBloc,
+                ),
+              ],
               child: BlocListener<UserBloc, UserState>(
                 listener: (context, state) {
                   if (state is UserLoaded) {
-                  setState(() {
-                    log(state.user.toString());
-                    currentWeight = state.user.currentWeight ?? 0;
-                  });
-                }
+                    setState(() {
+                      log(state.user.toString());
+                      currentWeight = state.user.currentWeight ?? 0;
+                    });
+                  }
                 },
                 child: BlocBuilder<UserBloc, UserState>(
                   bloc: userBloc,
@@ -537,22 +578,160 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                                               ),
                                             ],
                                           )
-                                        : Text("Need access")),
+                                        : const Text("Need access")),
                               ),
                             ],
                           ),
                           const SizedBox(height: 20),
                           Container(
-                            height: deviceHeight * 0.4,
+                            height: deviceHeight * 0.5,
                             width: deviceWidth,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
                               color: Colors.white.withOpacity(0.2),
                             ),
-                            child: const Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: LineChartSample2(),
-                            ),
+                            child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            SizedBox(
+                                              child: WeightProgressBar(
+                                                  initialWeight: state
+                                                      .user.initialWeight!
+                                                      .toDouble(),
+                                                  currentWeight: state
+                                                      .user.currentWeight!
+                                                      .toDouble(),
+                                                  goalWeight: state
+                                                      .user.goalWeight!
+                                                      .toDouble()),
+                                            )
+                                          ]),
+                                      const SizedBox(
+                                        height: 30,
+                                      ),
+                                      const Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Text("Workout history",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: "Outer-Sans",
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 24
+                                          ),)
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      ListView.builder(
+                                          shrinkWrap: true,
+                                          physics:
+                                              const NeverScrollableScrollPhysics(),
+                                          itemCount:
+                                              state.user.workoutHistory?.length,
+                                          itemBuilder: (context, index) {
+                                            return Container(
+                                              margin: const EdgeInsets.only(
+                                                  bottom: 20,
+                                                  left: 5,
+                                                  right: 5),
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(
+                                                      width: 2,
+                                                      color: Colors.grey),
+                                                  borderRadius:
+                                                      BorderRadius.circular(15),
+                                                  gradient: LinearGradient(
+                                                    colors: [
+                                                      Colors.grey
+                                                          .withOpacity(0.3),
+                                                      const Color.fromARGB(
+                                                              255, 80, 29, 220)
+                                                          .withOpacity(0.3),
+                                                    ],
+                                                    begin: Alignment.topLeft,
+                                                    end: Alignment.bottomRight,
+                                                  ),
+                                                  boxShadow: [
+                                                    BoxShadow(
+                                                        color: Colors.white
+                                                            .withOpacity(0.05)
+                                                            .withOpacity(0.03),
+                                                        offset: const Offset(
+                                                            -10, -10),
+                                                        spreadRadius: 0,
+                                                        blurRadius: 10),
+                                                    BoxShadow(
+                                                        color: Colors.black87
+                                                            .withOpacity(0.3),
+                                                        offset: const Offset(
+                                                            10, 10),
+                                                        spreadRadius: 0,
+                                                        blurRadius: 10)
+                                                  ]),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: Column(
+                                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                                  children: [
+                                                    Row(
+                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                      children: [
+                                                        Text(state.user.workoutHistory![index].workout.title.toString(),
+                                                        style: const TextStyle(
+                                                          fontFamily: "Outer-Sans",
+                                                          fontSize: 24,
+                                                          fontWeight: FontWeight.bold,
+                                                          color: Colors.white
+                                                        ),)
+                                                      ],
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                      children: [
+                                                        Text(state.user.workoutHistory![index].workout.difficulty.toString(), 
+                                                        style: TextStyle(
+                                                          color: _getColorForDifficulty(state.user.workoutHistory![index].workout.difficulty ?? "Easy"),
+                                                          fontFamily: "Outer-Sans",
+                                                          fontSize: 20,
+                                                          fontWeight: FontWeight.bold
+                                                        ),),
+                                                        Text(
+                                                          state.user.workoutHistory![index].workout.exercises!.length.toString(), style: 
+                                                          const TextStyle(
+                                                          color: Colors.white,
+                                                          fontFamily: "Outer-Sans",
+                                                          fontSize: 20,
+                                                          fontWeight: FontWeight.bold
+                                                        ),
+                                                        ),
+                                                        Text(
+                                                          formatDate(state.user.workoutHistory![index].date), style: 
+                                                          const TextStyle(
+                                                          color: Colors.white,
+                                                          fontFamily: "Outer-Sans",
+                                                          fontSize: 20,
+                                                          fontWeight: FontWeight.bold
+                                                        ),
+                                                        ),
+                                                      ],
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            );
+                                          })
+                                    ],
+                                  ),
+                                )),
                           ),
                         ],
                       );
