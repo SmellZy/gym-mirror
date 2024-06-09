@@ -1,8 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
-import 'package:gym_mirror/domain/repositories/user_repository.dart';
-import 'package:gym_mirror/presentation/bloc/user/user_bloc.dart';
 import 'package:gym_mirror/router/router.dart';
 
 @RoutePage()
@@ -14,16 +11,12 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  final _userBloc = UserBloc(GetIt.I<UserRepository>());
   var selectedPageIndex = 0;
 
-  getUserInfo() {
-    _userBloc.add(GetUserEvent());
-  }
+  
 
   @override
   void initState() {
-    getUserInfo();
     super.initState();
   }
 

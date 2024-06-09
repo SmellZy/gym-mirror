@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -10,6 +11,7 @@ import 'package:gym_mirror/domain/repositories/exercise_repository.dart';
 import 'package:gym_mirror/domain/repositories/workout_repository.dart';
 import 'package:gym_mirror/presentation/bloc/exercise/exercise_bloc.dart';
 import 'package:gym_mirror/presentation/bloc/workout/workout_bloc.dart';
+import 'package:gym_mirror/router/router.dart';
 import 'package:multi_dropdown/multiselect_dropdown.dart';
 
 class CreateWorkoutModalSheet extends StatefulWidget {
@@ -383,25 +385,36 @@ class _CreateWorkoutModalSheetState extends State<CreateWorkoutModalSheet> {
                                                         .id +
                                                     1
                                                 : 1;
-
-                                            List<ExerciseModel> exerciseModels =
-                                                selectedExercises
-                                                    .map((exercise) =>
-                                                        ExerciseModel
-                                                            .fromEntity(
-                                                                exercise))
-                                                    .toList();
-
-                                            widget.workoutBloc
-                                                .add(CreateWorkoutEvent(Workout(
-                                              id: nextId,
-                                              title: workoutName,
-                                              difficulty: difficultyToString(
-                                                  selectedDifficulty),
-                                              description: "",
-                                              exercises: exerciseModels,
-                                            )));
-                                            log(nextId.toString());
+                                                List<ExerciseModel> exerciseModels = [];
+                                            List<int> exerciseIds = selectedExercises.map((e) => e.id).toList();
+                                            for (var id in exerciseIds) {
+                                              exerciseBloc.add(GetExerciseEvent(id));
+                                            }
+                                            exerciseBloc.stream.listen((event) {
+                                              if (event is ExerciseLoaded) {
+                                                ExerciseModel exerciseModel = ExerciseModel.fromEntity(event.exercise);
+                                                log(exerciseModel.toString());
+                                                exerciseModels.add(exerciseModel);
+                                                if (exerciseModels.length == exerciseIds.length) {
+                                                  widget.workoutBloc
+                                                      .add(CreateWorkoutEvent(Workout(
+                                                    id: nextId,
+                                                    title: workoutName,
+                                                    difficulty: difficultyToString(
+                                                        selectedDifficulty),
+                                                    description: "",
+                                                    exercises: exerciseModels,
+                                                  )));
+                                                  widget.workoutBloc.stream.listen((event) {
+                                                    if (event is WorkoutCreating) {
+                                                      log("Workout creating");
+                                                    } else if (state is WorkoutCreated) {
+                                                      Navigator.pop(context);
+                                                    }
+                                                  });
+                                                }
+                                              }
+                                            });
                                           },
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: Colors.transparent,

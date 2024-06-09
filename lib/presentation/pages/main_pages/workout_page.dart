@@ -2,15 +2,18 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+// ignore: unused_import
 import 'package:gym_mirror/domain/entities/workout.dart';
+import 'package:gym_mirror/domain/repositories/user_repository.dart';
 import 'package:gym_mirror/domain/repositories/workout_repository.dart';
+import 'package:gym_mirror/presentation/bloc/user/user_bloc.dart';
 import 'package:gym_mirror/presentation/bloc/workout/workout_bloc.dart';
 import 'package:gym_mirror/presentation/widgets/background_container.dart';
 import 'package:gym_mirror/presentation/widgets/create_workout_modal_sheet.dart';
 
 @RoutePage()
 class WorkoutPage extends StatefulWidget {
-  const WorkoutPage({Key? key}) : super(key: key);
+  const WorkoutPage({Key? key,}) : super(key: key);
 
   @override
   State<WorkoutPage> createState() => _WorkoutPageState();
@@ -18,6 +21,7 @@ class WorkoutPage extends StatefulWidget {
 
 class _WorkoutPageState extends State<WorkoutPage> {
   final workoutBloc = WorkoutBloc(GetIt.I<WorkoutRepository>());
+  final userBloc = UserBloc(GetIt.I<UserRepository>());
 
   @override
   void initState() {

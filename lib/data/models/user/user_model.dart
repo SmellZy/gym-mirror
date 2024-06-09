@@ -1,3 +1,5 @@
+import 'package:gym_mirror/data/models/finished_workout/finished_workout_model.dart';
+import 'package:gym_mirror/domain/entities/finished_workout.dart';
 import 'package:gym_mirror/domain/entities/user.dart';
 import 'package:gym_mirror/domain/entities/workout.dart';
 import 'package:hive/hive.dart';
@@ -15,14 +17,18 @@ class UserModel {
   @HiveField(3)
   final int? height;
   @HiveField(4)
-  final int? weight;
+  final int? initialWeight;
   @HiveField(5)
-  final int? dayStreak;
+  final int? currentWeight;
   @HiveField(6)
-  final List<Workout>? workoutHistory;
+  final int? goalWeight;
   @HiveField(7)
-  final FitnessLevel? fitnessLevel;
+  final int? dayStreak;
   @HiveField(8)
+  final List<FinishedWorkoutModel>? workoutHistory;
+  @HiveField(9)
+  final FitnessLevel? fitnessLevel;
+  @HiveField(10)
   final List<int>? weigthHistory;
 
   UserModel(
@@ -31,7 +37,9 @@ class UserModel {
       this.name, 
       this.birthday, 
       this.height, 
-      this.weight,
+      this.initialWeight,
+      this.currentWeight,
+      this.goalWeight,
       this.dayStreak,
       this.workoutHistory,
       this.fitnessLevel,
@@ -46,7 +54,9 @@ class UserModel {
     name: user.name, 
     birthday: user.birthday, 
     height: user.height, 
-    weight: user.weight,
+    initialWeight: user.initialWeight,
+    currentWeight: user.currentWeight,
+    goalWeight: user.goalWeight,
     dayStreak: user.dayStreak,
     workoutHistory: user.workoutHistory,
     fitnessLevel: user.fitnessLevel,
@@ -59,7 +69,9 @@ class UserModel {
     name: name, 
     birthday: birthday, 
     height: height, 
-    weight: weight,
+    initialWeight: initialWeight,
+    currentWeight: currentWeight,
+    goalWeight: goalWeight,
     dayStreak: dayStreak,
     workoutHistory: workoutHistory,
     fitnessLevel: fitnessLevel,

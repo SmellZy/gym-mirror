@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:gym_mirror/data/models/exercise/exercise_model.dart';
+import 'package:gym_mirror/data/models/finished_workout/finished_workout_model.dart';
 import 'package:gym_mirror/data/models/user/user_model.dart';
 import 'package:gym_mirror/data/models/workout/workout_model.dart';
 import 'package:gym_mirror/generated/l10n.dart';
@@ -12,11 +13,14 @@ import 'package:hive_flutter/hive_flutter.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
-  Hive.registerAdapter(UserModelAdapter());
-  Hive.registerAdapter(WorkoutModelAdapter());
   Hive.registerAdapter(ExerciseModelAdapter());
+  Hive.registerAdapter(WorkoutModelAdapter());
+  Hive.registerAdapter(FinishedWorkoutModelAdapter());
+  Hive.registerAdapter(UserModelAdapter());
+  
   await Hive.openBox<UserModel>('userBox');
   await Hive.openBox<ExerciseModel>('exerciseBox');
+  await Hive.openBox<FinishedWorkoutModel>('finishedWorkoutBox');
   await Hive.openBox<WorkoutModel>('workoutBox');
   init();
   runApp(const MainApp());

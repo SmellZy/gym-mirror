@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gym_mirror/domain/entities/workout.dart';
+import 'package:gym_mirror/presentation/bloc/user/user_bloc.dart';
 import 'package:gym_mirror/presentation/pages/greeting_pages/greeting_first_screen.dart';
 import 'package:gym_mirror/presentation/pages/greeting_pages/greeting_second_screen.dart';
 import 'package:gym_mirror/presentation/pages/greeting_pages/greeting_third_screen.dart';

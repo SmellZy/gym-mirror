@@ -3,16 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:gym_mirror/data.dart';
 import 'package:gym_mirror/domain/repositories/exercise_repository.dart';
+import 'package:gym_mirror/domain/repositories/user_repository.dart';
 import 'package:gym_mirror/domain/repositories/workout_repository.dart';
 import 'package:gym_mirror/presentation/bloc/exercise/exercise_bloc.dart';
+import 'package:gym_mirror/presentation/bloc/user/user_bloc.dart';
 import 'package:gym_mirror/presentation/bloc/workout/workout_bloc.dart';
 import 'package:gym_mirror/presentation/widgets/background_container.dart';
 import 'package:gym_mirror/presentation/widgets/modal_sheet_container.dart';
+import 'package:intl/intl.dart';
 import 'package:o3d/o3d.dart';
 
 @RoutePage()
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({super.key,});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -25,6 +28,7 @@ class _HomePageState extends State<HomePage> {
 
   final _workoutBloc = WorkoutBloc(GetIt.I<WorkoutRepository>());
   final _exerciseBloc = ExerciseBloc(GetIt.I<ExerciseRepository>());
+  final userBloc = UserBloc(GetIt.I<UserRepository>());
   final exercisesData = ExercisesData();
 
   @override
@@ -32,6 +36,7 @@ class _HomePageState extends State<HomePage> {
     _workoutBloc.add(GetWorkoutsEvent());
     _exerciseBloc.add(CreateExerciseEvent(exercisesData.exercise1));
     _exerciseBloc.add(CreateExerciseEvent(exercisesData.exercise2));
+    userBloc.add(GetUserEvent());
     super.initState();
   }
 
@@ -88,6 +93,7 @@ class _HomePageState extends State<HomePage> {
                           context: context,
                           builder: (context) => ModalSheetContainer(
                                 exerciseBloc: _exerciseBloc,
+                                userBloc: userBloc,
                               )).then((_) => setState(() {
                             isBottomSheet = false;
                           }));
@@ -116,6 +122,7 @@ class _topPanelSheetFalse extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var date = DateTime.now();
     return Column(children: [
       //main column
       Row(
@@ -128,21 +135,12 @@ class _topPanelSheetFalse extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    "Monday, ".toUpperCase(),
+                    DateFormat('EEEE, MMM d').format(date).toUpperCase(),
                     style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
                         fontFamily: "Outer-Sans",
-                        fontWeight: FontWeight.w400),
+                        fontSize: 16,
+                        color: Colors.white),
                   ),
-                  Text(
-                    "April 23".toUpperCase(),
-                    style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
-                        fontFamily: "Outer-Sans",
-                        fontWeight: FontWeight.w400),
-                  )
                 ],
               ),
               Row(
@@ -150,7 +148,7 @@ class _topPanelSheetFalse extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "day 21 - ".toUpperCase(),
+                    "day 1 - ".toUpperCase(),
                     style: const TextStyle(
                         color: Colors.white,
                         fontSize: 24,
@@ -200,7 +198,7 @@ class _topPanelSheetFalse extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
-                        "16",
+                        "0",
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 24,
@@ -249,7 +247,7 @@ class _topPanelSheetFalse extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "4/7",
+                        "1/7",
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 24,

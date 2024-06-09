@@ -24,6 +24,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   TextEditingController nameController = TextEditingController();
   TextEditingController heightController = TextEditingController();
   TextEditingController weightController = TextEditingController();
+  TextEditingController goalWeightController = TextEditingController();
   final _userBloc = UserBloc(GetIt.I<UserRepository>());
   double proggressPercent = 0.1;
   int? currentValue;
@@ -35,7 +36,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     super.initState();
     _pageController.addListener(() {
       setState(() {
-        _isLastPage = _pageController.page!.toInt() != 1;
+        _isLastPage = _pageController.page!.toInt() == 3;
       });
     });
   }
@@ -51,7 +52,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         id: 1,
         name: nameController.text,
         height: int.parse(heightController.text),
-        weight: int.parse(weightController.text))));
+        initialWeight: int.parse(weightController.text),
+        currentWeight: int.parse(weightController.text),
+        goalWeight: int.parse(goalWeightController.text))));
   }
 
   @override
@@ -81,9 +84,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   children: [
                     OnboardingName(nameController: nameController),
                     OnboardingHeight(heightController: heightController),
-                    OnboardingWeight(
-                      weightController: weightController,
-                    )
+                    OnboardingWeight(weightController: weightController,),
+                    OnboardingGoalWeight(goalWeightController: goalWeightController, weightController: weightController)
                   ],
                 ),
               ),
@@ -104,7 +106,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ),
                     ),
                     onPressed: () {
-                      proggressPercent += 0.3;
+                      proggressPercent += 0.15;
                       if (!_isLastPage) {
                         _pageController.nextPage(
                             duration: const Duration(microseconds: 10),
@@ -220,6 +222,53 @@ class _OnboardingWeightState extends State<OnboardingWeight> {
             : 70,
         onChanged: ((value) =>
             setState(() => widget.weightController.text = value.toString())),
+      ),
+    );
+  }
+}
+
+class OnboardingGoalWeight extends StatefulWidget {
+  const OnboardingGoalWeight({
+    required this.goalWeightController,
+    super.key, required this.weightController,
+  });
+
+  final TextEditingController goalWeightController;
+  final TextEditingController weightController;
+
+  @override
+  State<OnboardingGoalWeight> createState() => _OnboardingGoalWeightState();
+}
+
+class _OnboardingGoalWeightState extends State<OnboardingGoalWeight> {
+  @override
+  Widget build(BuildContext context) {
+    return OnboardingInfoInput(
+      heightOfSizedBox: 30,
+      labelText: "What`s your goal?",
+      child: NumberPicker(
+        axis: Axis.horizontal,
+        textStyle: const TextStyle(
+            color: Color.fromARGB(193, 255, 255, 255),
+            fontSize: 25,
+            fontFamily: "Outer-Sans"),
+        selectedTextStyle: const TextStyle(
+            color: Colors.white, fontSize: 50, fontFamily: "Outer-Sans"),
+        itemCount: 3,
+        decoration: BoxDecoration(
+          color: Colors.white.withOpacity(0.2),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        haptics: true,
+        itemHeight: 90,
+        itemWidth: 100,
+        minValue: 45,
+        maxValue: 250,
+        value: widget.goalWeightController.text != ""
+            ? int.parse(widget.goalWeightController.text)
+            : 70,
+        onChanged: ((value) =>
+            setState(() => widget.goalWeightController.text = value.toString())),
       ),
     );
   }

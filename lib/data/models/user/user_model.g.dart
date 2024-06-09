@@ -21,18 +21,20 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
       name: fields[1] as String?,
       birthday: fields[2] as DateTime?,
       height: fields[3] as int?,
-      weight: fields[4] as int?,
-      dayStreak: fields[5] as int?,
-      workoutHistory: (fields[6] as List?)?.cast<Workout>(),
-      fitnessLevel: fields[7] as FitnessLevel?,
-      weigthHistory: (fields[8] as List?)?.cast<int>(),
+      initialWeight: fields[4] as int?,
+      currentWeight: fields[5] as int?,
+      goalWeight: fields[6] as int?,
+      dayStreak: fields[7] as int?,
+      workoutHistory: (fields[8] as List?)?.cast<FinishedWorkoutModel>(),
+      fitnessLevel: fields[9] as FitnessLevel?,
+      weigthHistory: (fields[10] as List?)?.cast<int>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, UserModel obj) {
     writer
-      ..writeByte(9)
+      ..writeByte(11)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -42,14 +44,18 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
       ..writeByte(3)
       ..write(obj.height)
       ..writeByte(4)
-      ..write(obj.weight)
+      ..write(obj.initialWeight)
       ..writeByte(5)
-      ..write(obj.dayStreak)
+      ..write(obj.currentWeight)
       ..writeByte(6)
-      ..write(obj.workoutHistory)
+      ..write(obj.goalWeight)
       ..writeByte(7)
-      ..write(obj.fitnessLevel)
+      ..write(obj.dayStreak)
       ..writeByte(8)
+      ..write(obj.workoutHistory)
+      ..writeByte(9)
+      ..write(obj.fitnessLevel)
+      ..writeByte(10)
       ..write(obj.weigthHistory);
   }
 
