@@ -612,9 +612,10 @@ String formatDate(DateTime date) {
                                                       .toDouble()),
                                             )
                                           ]),
-                                      const SizedBox(
-                                        height: 30,
-                                      ),
+                                          Container(
+                                            width: deviceWidth,
+                                            height: deviceHeight*0.25,
+                                            child: LineChartSample2(weightHistory: state.user.weightHistory!)),
                                       const Row(
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
