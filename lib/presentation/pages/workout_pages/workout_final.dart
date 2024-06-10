@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:gym_mirror/data/models/finished_workout/finished_workout_model.dart';
 import 'package:gym_mirror/data/models/workout/workout_model.dart';
-import 'package:gym_mirror/domain/entities/finished_workout.dart';
 import 'package:gym_mirror/domain/entities/user.dart';
 import 'package:gym_mirror/domain/entities/workout.dart';
 import 'package:gym_mirror/domain/repositories/finished_workout_repository.dart';
 import 'package:gym_mirror/domain/repositories/user_repository.dart';
+import 'package:gym_mirror/generated/l10n.dart';
 import 'package:gym_mirror/presentation/bloc/finished_workout/finished_workout_bloc.dart';
 import 'package:gym_mirror/presentation/bloc/user/user_bloc.dart';
 import 'package:gym_mirror/presentation/widgets/background_container.dart';
@@ -88,9 +88,9 @@ class _WorkoutFinalScreenState extends State<WorkoutFinalScreen> {
                               ),
                             ],
                           ),
-                          const Text(
-                            "Successfully finished",
-                            style: TextStyle(
+                          Text(
+                            S.of(context).successfullyFinished,
+                            style: const TextStyle(
                               fontFamily: "Outer-Sans",
                               color: Colors.white,
                               fontSize: 28,
@@ -100,12 +100,12 @@ class _WorkoutFinalScreenState extends State<WorkoutFinalScreen> {
                           const SizedBox(
                             height: 10,
                           ),
-                          const Row(
+                          Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "*Please enter your weight\nafter workout",
-                                style: TextStyle(
+                                S.of(context).pleaseEnterYourWeightnafterWorkout,
+                                style: const TextStyle(
                                     fontFamily: "Outer-Sans",
                                     color: Colors.grey,
                                     fontSize: 20,
@@ -120,7 +120,7 @@ class _WorkoutFinalScreenState extends State<WorkoutFinalScreen> {
                               controller: _weightController,
                               keyboardType: TextInputType.number,
                               decoration: InputDecoration(
-                                suffixText: "kg",
+                                suffixText: S.of(context).kg,
                                 suffixStyle: TextStyle(
                                     color: Colors.white.withOpacity(0.75),
                                     fontSize: 25,
@@ -138,7 +138,7 @@ class _WorkoutFinalScreenState extends State<WorkoutFinalScreen> {
                                     borderSide: BorderSide(
                                         width: 2,
                                         color: Colors.white.withOpacity(0.75))),
-                                hintText: "Your weight",
+                                hintText: S.of(context).yourWeight,
                                 hintStyle: TextStyle(
                                     color: Colors.white.withOpacity(0.75),
                                     fontSize: 25,
@@ -153,14 +153,14 @@ class _WorkoutFinalScreenState extends State<WorkoutFinalScreen> {
                                   fontFamily: "Outer-Sans"),
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return "Please enter your weight";
+                                  return S.of(context).pleaseEnterYourWeight;
                                 }
                                 final weight = int.tryParse(value);
                                 if (weight == null) {
-                                  return "Please enter a valid integer";
+                                  return S.of(context).pleaseEnterAValidInteger;
                                 }
                                 if (weight < 40 || weight > 250) {
-                                  return "Please enter a weight between 40 and 250";
+                                  return S.of(context).pleaseEnterAWeightBetween40And250;
                                 }
                                 return null;
                               },
@@ -169,12 +169,12 @@ class _WorkoutFinalScreenState extends State<WorkoutFinalScreen> {
                           Padding(
                             padding: const EdgeInsets.all(20.0),
                             child: Container(
-                              width: deviceWidth * 0.4,
+                              width: deviceWidth * 0.7,
                               height: deviceHeight * 0.05,
                               decoration: const BoxDecoration(
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(20)),
-                                  color: Color(0xFF2c3135),
+                                      BorderRadius.all(Radius.circular(10)),
+                                  color: Color.fromARGB(255, 144, 174, 219),
                                   boxShadow: [
                                     BoxShadow(
                                       color: Color.fromARGB(255, 106, 67, 172),
@@ -273,7 +273,12 @@ class _WorkoutFinalScreenState extends State<WorkoutFinalScreen> {
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(15)),
                                 ),
-                                child: const Text("Finish"),
+                                child: Text(S.of(context).finish, style: const TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: "Outer-Sans",
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold
+                                ),),
                               ),
                             ),
                           ),

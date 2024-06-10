@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:gym_mirror/domain/entities/workout.dart';
 import 'package:gym_mirror/domain/repositories/workout_repository.dart';
+import 'package:gym_mirror/generated/l10n.dart';
 import 'package:gym_mirror/presentation/bloc/exercise/exercise_bloc.dart';
 import 'package:gym_mirror/presentation/bloc/user/user_bloc.dart';
 import 'package:gym_mirror/presentation/bloc/workout/workout_bloc.dart';
@@ -60,14 +61,14 @@ class _ModalSheetContainerState extends State<ModalSheetContainer> {
               color: const Color.fromARGB(255, 72, 72, 72), width: 2)),
       child: Stack(
         children: [
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
-                padding: EdgeInsets.only(top: 8.0),
+                padding: const EdgeInsets.only(top: 8.0),
                 child: Text(
-                  "Select workout",
-                  style: TextStyle(
+                  S.of(context).selectWorkout,
+                  style: const TextStyle(
                       fontFamily: "Outer-Sans",
                       fontSize: 24,
                       color: Color.fromARGB(255, 213, 211, 211),
@@ -96,11 +97,11 @@ class _ModalSheetContainerState extends State<ModalSheetContainer> {
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
                               const SizedBox(height: 30,),
-                              const Padding(
-                                padding: EdgeInsets.only(left: 12.0),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 12.0),
                                 child: Text(
-                                  "You have not created workouts yet",
-                                  style: TextStyle(
+                                  S.of(context).youHaveNotCreatedWorkoutsYet,
+                                  style: const TextStyle(
                                       fontSize: 18, color: Colors.grey),
                                 ),
                               ),
@@ -115,7 +116,7 @@ class _ModalSheetContainerState extends State<ModalSheetContainer> {
                                   child: ElevatedButton(
                                     onPressed: () {
                                       Navigator.pop(context);
-                                      AutoRouter.of(context).push(WorkoutRoute());
+                                      AutoRouter.of(context).push(const WorkoutRoute());
                                     },
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: const Color.fromARGB(
@@ -125,9 +126,9 @@ class _ModalSheetContainerState extends State<ModalSheetContainer> {
                                           borderRadius:
                                               BorderRadius.circular(15)),
                                     ),
-                                    child: const Text(
-                                      "Create new workout",
-                                      style: TextStyle(
+                                    child: Text(
+                                      S.of(context).createNewWorkout,
+                                      style: const TextStyle(
                                           color: Colors.white,
                                           fontFamily: "Outer-Sans",
                                           fontSize: 18),
@@ -266,7 +267,7 @@ class _ModalSheetContainerState extends State<ModalSheetContainer> {
                                                     children: [
                                                       Text("${workout.difficulty}",
                                                         style:  TextStyle(
-                                                          color: _getColorForDifficulty(workout.difficulty ?? "Easy"),
+                                                          color: _getColorForDifficulty(workout.difficulty ?? S.of(context).easyDiff),
                                                             fontFamily:
                                                                 "Outer-Sans",
                                                             fontSize: 14,
@@ -277,7 +278,7 @@ class _ModalSheetContainerState extends State<ModalSheetContainer> {
                                                                     .ellipsis),
                                                       ),
                                                       Text(
-                                                        "Exercises: ${workout.exercises?.length ?? 0}",
+                                                        "${S.of(context).exercisesWorkout}${workout.exercises?.length ?? 0}",
                                                         style: const TextStyle(
                                                             fontFamily:
                                                                 "Outer-Sans",
@@ -320,8 +321,8 @@ class _ModalSheetContainerState extends State<ModalSheetContainer> {
                                 ),
                                 child: Text(
                                   selectedWorkout != null
-                                      ? "Start workout"
-                                      : "Select a workout",
+                                      ? S.of(context).startWorkout
+                                      : S.of(context).selectWorkout,
                                   style: const TextStyle(
                                       color: Colors.white,
                                       fontFamily: "Outer-Sans",
@@ -334,7 +335,7 @@ class _ModalSheetContainerState extends State<ModalSheetContainer> {
                       );
                     }
                   }
-                  return const Text("nothing");
+                  return Text(S.of(context).nothing);
                 },
               ),
             ),

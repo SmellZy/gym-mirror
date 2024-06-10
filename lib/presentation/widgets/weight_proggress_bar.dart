@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:gym_mirror/generated/l10n.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class WeightProgressBar extends StatelessWidget {
@@ -40,7 +41,7 @@ class WeightProgressBar extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Text(
-          isLosingWeight ? 'Losing Weight Progress' : 'Gaining Weight Progress',
+          isLosingWeight ? S.of(context).losingWeightProgress : S.of(context).gainingWeightProgress,
           style: const TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,

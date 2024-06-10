@@ -640,10 +640,10 @@ class S {
     );
   }
 
-  /// `day 21 - `
+  /// `day 1 - `
   String get day21 {
     return Intl.message(
-      'day 21 - ',
+      'day 1 - ',
       name: 'day21',
       desc: '',
       args: [],
@@ -695,6 +695,176 @@ class S {
     return Intl.message(
       'Create new workout',
       name: 'createNewWorkout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Repetitions: `
+  String get repetitions {
+    return Intl.message(
+      'Repetitions: ',
+      name: 'repetitions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sets: `
+  String get sets {
+    return Intl.message(
+      'Sets: ',
+      name: 'sets',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Starting workout in: `
+  String get startingWorkoutIn {
+    return Intl.message(
+      'Starting workout in: ',
+      name: 'startingWorkoutIn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next exercise in: `
+  String get nextExerciseIn {
+    return Intl.message(
+      'Next exercise in: ',
+      name: 'nextExerciseIn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Successfully finished`
+  String get successfullyFinished {
+    return Intl.message(
+      'Successfully finished',
+      name: 'successfullyFinished',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `*Please enter your weight\nafter workout`
+  String get pleaseEnterYourWeightnafterWorkout {
+    return Intl.message(
+      '*Please enter your weight\nafter workout',
+      name: 'pleaseEnterYourWeightnafterWorkout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your weight`
+  String get yourWeight {
+    return Intl.message(
+      'Your weight',
+      name: 'yourWeight',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your weight`
+  String get pleaseEnterYourWeight {
+    return Intl.message(
+      'Please enter your weight',
+      name: 'pleaseEnterYourWeight',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a valid integer`
+  String get pleaseEnterAValidInteger {
+    return Intl.message(
+      'Please enter a valid integer',
+      name: 'pleaseEnterAValidInteger',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a weight between 40 and 250`
+  String get pleaseEnterAWeightBetween40And250 {
+    return Intl.message(
+      'Please enter a weight between 40 and 250',
+      name: 'pleaseEnterAWeightBetween40And250',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Finish`
+  String get finish {
+    return Intl.message(
+      'Finish',
+      name: 'finish',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Weight history`
+  String get weightHistory {
+    return Intl.message(
+      'Weight history',
+      name: 'weightHistory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select workout`
+  String get selectWorkout {
+    return Intl.message(
+      'Select workout',
+      name: 'selectWorkout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have not created workouts yet`
+  String get youHaveNotCreatedWorkoutsYet {
+    return Intl.message(
+      'You have not created workouts yet',
+      name: 'youHaveNotCreatedWorkoutsYet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exercises: `
+  String get exercisesWorkout {
+    return Intl.message(
+      'Exercises: ',
+      name: 'exercisesWorkout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Losing Weight Progress`
+  String get losingWeightProgress {
+    return Intl.message(
+      'Losing Weight Progress',
+      name: 'losingWeightProgress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gaining Weight Progress`
+  String get gainingWeightProgress {
+    return Intl.message(
+      'Gaining Weight Progress',
+      name: 'gainingWeightProgress',
       desc: '',
       args: [],
     );

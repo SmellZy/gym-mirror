@@ -1,6 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:gym_mirror/generated/l10n.dart';
 
 class LineChartSample2 extends StatefulWidget {
   final List<int> weightHistory;
@@ -37,9 +37,9 @@ class _LineChartSample2State extends State<LineChartSample2> {
         Positioned(
           right: 80,
           bottom: 160,
-          child: const Text(
-                  'Weight history',
-                  style: TextStyle(
+          child: Text(
+                  S.of(context).weightHistory,
+                  style: const TextStyle(
                     color: Color(0xFF50E4FF),
                     fontSize: 22,
                     fontWeight: FontWeight.bold,

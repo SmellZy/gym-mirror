@@ -27,7 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "analytics": MessageLookupByLibrary.simpleMessage("Аналітика"),
         "answer": MessageLookupByLibrary.simpleMessage("Дайте відповідь "),
         "availableWorkouts":
-            MessageLookupByLibrary.simpleMessage("Available Workouts"),
+            MessageLookupByLibrary.simpleMessage("Доступні тренування"),
         "beforeWeStartOur":
             MessageLookupByLibrary.simpleMessage("перед тим як почати \n"),
         "bicycle": MessageLookupByLibrary.simpleMessage("Велосипед"),
@@ -36,22 +36,27 @@ class MessageLookup extends MessageLookupByLibrary {
         "cm": MessageLookupByLibrary.simpleMessage("см"),
         "cm160": MessageLookupByLibrary.simpleMessage("160 см"),
         "createNewWorkout":
-            MessageLookupByLibrary.simpleMessage("Create new workout"),
+            MessageLookupByLibrary.simpleMessage("Створити нове тренування"),
         "createWorkout":
             MessageLookupByLibrary.simpleMessage("Створити тренування"),
-        "day1": MessageLookupByLibrary.simpleMessage("day 1 - "),
+        "day1": MessageLookupByLibrary.simpleMessage("день 1 - "),
         "day1LegDay": MessageLookupByLibrary.simpleMessage("День 1 - День ніг"),
-        "day21": MessageLookupByLibrary.simpleMessage("day 21 - "),
-        "dayStreak": MessageLookupByLibrary.simpleMessage("Day Streak"),
-        "difficulty": MessageLookupByLibrary.simpleMessage("Difficulty"),
+        "day21": MessageLookupByLibrary.simpleMessage("день 1 - "),
+        "dayStreak": MessageLookupByLibrary.simpleMessage("Смуга днів"),
+        "difficulty": MessageLookupByLibrary.simpleMessage("Складність"),
         "easyDiff": MessageLookupByLibrary.simpleMessage("Легка"),
         "enterYourName":
             MessageLookupByLibrary.simpleMessage("Введіть ваше імʼя"),
-        "exerciseCount": MessageLookupByLibrary.simpleMessage("Exercise count"),
+        "exerciseCount":
+            MessageLookupByLibrary.simpleMessage("Кількість вправ"),
         "exercises": MessageLookupByLibrary.simpleMessage("вправами!"),
+        "exercisesWorkout": MessageLookupByLibrary.simpleMessage("Вправи: "),
         "expertDiff": MessageLookupByLibrary.simpleMessage("Професіонал"),
+        "finish": MessageLookupByLibrary.simpleMessage("Закінчити"),
         "firstTraining":
             MessageLookupByLibrary.simpleMessage("перше тренування"),
+        "gainingWeightProgress":
+            MessageLookupByLibrary.simpleMessage("Прогрес набору ваги"),
         "hardDiff": MessageLookupByLibrary.simpleMessage("Важка"),
         "height": MessageLookupByLibrary.simpleMessage("Зріст: "),
         "heightMustBeBetween100And250": MessageLookupByLibrary.simpleMessage(
@@ -63,8 +68,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Я допоможу тобі \n"),
         "io": MessageLookupByLibrary.simpleMessage("IO."),
         "kg": MessageLookupByLibrary.simpleMessage("кг"),
-        "legDay": MessageLookupByLibrary.simpleMessage("Leg Day"),
-        "maxStreak4": MessageLookupByLibrary.simpleMessage("Max Streak - 4"),
+        "legDay": MessageLookupByLibrary.simpleMessage("День ніг"),
+        "losingWeightProgress":
+            MessageLookupByLibrary.simpleMessage("Прогрес схуднення"),
+        "maxStreak4":
+            MessageLookupByLibrary.simpleMessage("Максимальна смуга - 4"),
         "mediumDiff": MessageLookupByLibrary.simpleMessage("Середня"),
         "mill": MessageLookupByLibrary.simpleMessage("Мельниця"),
         "millDescription": MessageLookupByLibrary.simpleMessage(
@@ -72,28 +80,49 @@ class MessageLookup extends MessageLookupByLibrary {
         "myNameIs": MessageLookupByLibrary.simpleMessage("Мене звуть "),
         "name": MessageLookupByLibrary.simpleMessage("Імʼя: "),
         "needAccess": MessageLookupByLibrary.simpleMessage("Потрібен доступ"),
+        "nextExerciseIn":
+            MessageLookupByLibrary.simpleMessage("Наступна вправа через: "),
         "nextOnboarding": MessageLookupByLibrary.simpleMessage("Далі"),
         "noWorkoutsAvailable":
-            MessageLookupByLibrary.simpleMessage("No workouts available"),
+            MessageLookupByLibrary.simpleMessage("Немає доступних тренувань"),
         "nothing": MessageLookupByLibrary.simpleMessage("Нічого"),
         "pleaseEnterAHeight":
             MessageLookupByLibrary.simpleMessage("Введіть зріст"),
         "pleaseEnterAName":
             MessageLookupByLibrary.simpleMessage("Введіть імʼя"),
+        "pleaseEnterAValidInteger": MessageLookupByLibrary.simpleMessage(
+            "ВВедіть правильне значення ваги"),
         "pleaseEnterAWeight":
             MessageLookupByLibrary.simpleMessage("Введіть вагу"),
+        "pleaseEnterAWeightBetween40And250":
+            MessageLookupByLibrary.simpleMessage(
+                "Введіть вагу від 40 до 250 кг"),
+        "pleaseEnterYourWeight":
+            MessageLookupByLibrary.simpleMessage("Введіть вашу вагу"),
+        "pleaseEnterYourWeightnafterWorkout":
+            MessageLookupByLibrary.simpleMessage(
+                "*Будь ласка введіть вашу вагу\nпісля тренування"),
         "profile": MessageLookupByLibrary.simpleMessage("Профіль"),
-        "record32": MessageLookupByLibrary.simpleMessage("Record - 32"),
+        "record32": MessageLookupByLibrary.simpleMessage("Рекорд - 32"),
+        "repetitions": MessageLookupByLibrary.simpleMessage("Повторення: "),
         "saveChanges": MessageLookupByLibrary.simpleMessage("Зберегти зміни"),
         "selectExercises":
             MessageLookupByLibrary.simpleMessage("Виберіть вправи"),
+        "selectWorkout":
+            MessageLookupByLibrary.simpleMessage("Виберіть тренування"),
+        "sets": MessageLookupByLibrary.simpleMessage("Сети: "),
         "startOnboarding": MessageLookupByLibrary.simpleMessage("Почати"),
         "startWorkout":
             MessageLookupByLibrary.simpleMessage("Розпочати тренування"),
+        "startingWorkoutIn":
+            MessageLookupByLibrary.simpleMessage("Початок вправи через: "),
         "steps": MessageLookupByLibrary.simpleMessage("Кроки"),
+        "successfullyFinished":
+            MessageLookupByLibrary.simpleMessage("Успішно завершено"),
         "todaySteps": MessageLookupByLibrary.simpleMessage("Сьогоднішні кроки"),
-        "weekGoal": MessageLookupByLibrary.simpleMessage("Week goal"),
+        "weekGoal": MessageLookupByLibrary.simpleMessage("Тижнева ціль"),
         "weight": MessageLookupByLibrary.simpleMessage("Вага: "),
+        "weightHistory": MessageLookupByLibrary.simpleMessage("Історія ваги"),
         "weightMustBeBetween30And250": MessageLookupByLibrary.simpleMessage(
             "Вага повинна бути від 30 до 250"),
         "whatsYourGoal": MessageLookupByLibrary.simpleMessage("Яка ваша ціль?"),
@@ -108,6 +137,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Складність тренування"),
         "workoutHistory":
             MessageLookupByLibrary.simpleMessage("Історія тренувань"),
-        "workoutTitle": MessageLookupByLibrary.simpleMessage("Назва тренування")
+        "workoutTitle":
+            MessageLookupByLibrary.simpleMessage("Назва тренування"),
+        "youHaveNotCreatedWorkoutsYet":
+            MessageLookupByLibrary.simpleMessage("Немає створених тренувань"),
+        "yourWeight": MessageLookupByLibrary.simpleMessage("Ваша вага")
       };
 }

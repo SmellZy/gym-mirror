@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:developer';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -8,6 +7,7 @@ import 'package:gym_mirror/domain/entities/exercise.dart';
 import 'package:gym_mirror/domain/entities/workout.dart';
 import 'package:gym_mirror/domain/repositories/exercise_repository.dart';
 import 'package:gym_mirror/domain/repositories/user_repository.dart';
+import 'package:gym_mirror/generated/l10n.dart';
 import 'package:gym_mirror/presentation/bloc/exercise/exercise_bloc.dart';
 import 'package:gym_mirror/presentation/bloc/user/user_bloc.dart';
 import 'package:gym_mirror/presentation/widgets/background_container.dart';
@@ -41,8 +41,8 @@ class _WorkoutInitialScreenState extends State<WorkoutInitialScreen> {
   void initState() {
     super.initState();
     _mapExercises();
-    _startUnblurTimer(Duration(seconds: 3));
-    Timer(Duration(seconds: 3), () {if (exercises.isNotEmpty && exercises.first.modelPath == "bicycle") {
+    _startUnblurTimer(const Duration(seconds: 3));
+    Timer(const Duration(seconds: 3), () {if (exercises.isNotEmpty && exercises.first.modelPath == "bicycle") {
     controller.cameraTarget(0.2, 0.3, -0.1);
     controller.cameraOrbit(35, 45, 90);
   }});
@@ -68,7 +68,7 @@ class _WorkoutInitialScreenState extends State<WorkoutInitialScreen> {
     setState(() {
       countdown = duration.inSeconds;
     });
-    timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
         if (countdown > 0) {
           countdown--;
@@ -139,7 +139,7 @@ class _WorkoutInitialScreenState extends State<WorkoutInitialScreen> {
                 child: Column(
                   children: [
                     Container(
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
                         color: Colors.white.withOpacity(0.3),
                         borderRadius: BorderRadius.circular(15),
@@ -174,7 +174,7 @@ class _WorkoutInitialScreenState extends State<WorkoutInitialScreen> {
                                     fontWeight: FontWeight.w700),
                               ),
                               Text(
-                                "Repetitions: ${exercises.isNotEmpty ? exercises[initialIndex].repetitions ?? "" : ""}",
+                                "${S.of(context).repetitions}${exercises.isNotEmpty ? exercises[initialIndex].repetitions ?? "" : ""}",
                                 style: const TextStyle(
                                     fontFamily: "Outer-Sans",
                                     color: Colors.green,
@@ -187,7 +187,7 @@ class _WorkoutInitialScreenState extends State<WorkoutInitialScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "Sets: ${initialSetIndex} /${exercises.isNotEmpty ? exercises[initialIndex].sets ?? "" : ""}",
+                                "${S.of(context).sets}$initialSetIndex /${exercises.isNotEmpty ? exercises[initialIndex].sets ?? "" : ""}",
                                 style: const TextStyle(
                                     fontFamily: "Outer-Sans",
                                     color: Color.fromARGB(255, 121, 156, 208),
@@ -292,8 +292,8 @@ class _WorkoutInitialScreenState extends State<WorkoutInitialScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      initialSetIndex == 1 ? "Starting workout in:" : "Next exercise in:",
-                      style: TextStyle(
+                      initialSetIndex == 1 ? S.of(context).startingWorkoutIn : S.of(context).nextExerciseIn,
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
@@ -301,7 +301,7 @@ class _WorkoutInitialScreenState extends State<WorkoutInitialScreen> {
                     ),
                     Text(
                       "$countdown",
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 48,
                         fontWeight: FontWeight.bold,

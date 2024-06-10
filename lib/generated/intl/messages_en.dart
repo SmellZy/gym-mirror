@@ -40,7 +40,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "createWorkout": MessageLookupByLibrary.simpleMessage("Create workout"),
         "day1": MessageLookupByLibrary.simpleMessage("day 1 - "),
         "day1LegDay": MessageLookupByLibrary.simpleMessage("Day 1 - Leg Day"),
-        "day21": MessageLookupByLibrary.simpleMessage("day 21 - "),
+        "day21": MessageLookupByLibrary.simpleMessage("day 1 - "),
         "dayStreak": MessageLookupByLibrary.simpleMessage("Day Streak"),
         "difficulty": MessageLookupByLibrary.simpleMessage("Difficulty"),
         "easyDiff": MessageLookupByLibrary.simpleMessage("Easy"),
@@ -48,8 +48,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter your name"),
         "exerciseCount": MessageLookupByLibrary.simpleMessage("Exercise count"),
         "exercises": MessageLookupByLibrary.simpleMessage("exercises!"),
+        "exercisesWorkout": MessageLookupByLibrary.simpleMessage("Exercises: "),
         "expertDiff": MessageLookupByLibrary.simpleMessage("Expert"),
+        "finish": MessageLookupByLibrary.simpleMessage("Finish"),
         "firstTraining": MessageLookupByLibrary.simpleMessage("first training"),
+        "gainingWeightProgress":
+            MessageLookupByLibrary.simpleMessage("Gaining Weight Progress"),
         "hardDiff": MessageLookupByLibrary.simpleMessage("Hard"),
         "height": MessageLookupByLibrary.simpleMessage("Height: "),
         "heightMustBeBetween100And250": MessageLookupByLibrary.simpleMessage(
@@ -62,6 +66,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "io": MessageLookupByLibrary.simpleMessage("IO."),
         "kg": MessageLookupByLibrary.simpleMessage("kg"),
         "legDay": MessageLookupByLibrary.simpleMessage("Leg Day"),
+        "losingWeightProgress":
+            MessageLookupByLibrary.simpleMessage("Losing Weight Progress"),
         "maxStreak4": MessageLookupByLibrary.simpleMessage("Max Streak - 4"),
         "mediumDiff": MessageLookupByLibrary.simpleMessage("Medium"),
         "mill": MessageLookupByLibrary.simpleMessage("Mill"),
@@ -70,6 +76,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "myNameIs": MessageLookupByLibrary.simpleMessage("My name is "),
         "name": MessageLookupByLibrary.simpleMessage("Name: "),
         "needAccess": MessageLookupByLibrary.simpleMessage("Need access"),
+        "nextExerciseIn":
+            MessageLookupByLibrary.simpleMessage("Next exercise in: "),
         "nextOnboarding": MessageLookupByLibrary.simpleMessage("Next"),
         "noWorkoutsAvailable":
             MessageLookupByLibrary.simpleMessage("No workouts available"),
@@ -78,19 +86,37 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please enter a height"),
         "pleaseEnterAName":
             MessageLookupByLibrary.simpleMessage("Please enter a name"),
+        "pleaseEnterAValidInteger": MessageLookupByLibrary.simpleMessage(
+            "Please enter a valid integer"),
         "pleaseEnterAWeight":
             MessageLookupByLibrary.simpleMessage("Please enter a weight"),
+        "pleaseEnterAWeightBetween40And250":
+            MessageLookupByLibrary.simpleMessage(
+                "Please enter a weight between 40 and 250"),
+        "pleaseEnterYourWeight":
+            MessageLookupByLibrary.simpleMessage("Please enter your weight"),
+        "pleaseEnterYourWeightnafterWorkout":
+            MessageLookupByLibrary.simpleMessage(
+                "*Please enter your weight\nafter workout"),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "record32": MessageLookupByLibrary.simpleMessage("Record - 32"),
+        "repetitions": MessageLookupByLibrary.simpleMessage("Repetitions: "),
         "saveChanges": MessageLookupByLibrary.simpleMessage("Save changes"),
         "selectExercises":
             MessageLookupByLibrary.simpleMessage("Select exercises"),
+        "selectWorkout": MessageLookupByLibrary.simpleMessage("Select workout"),
+        "sets": MessageLookupByLibrary.simpleMessage("Sets: "),
         "startOnboarding": MessageLookupByLibrary.simpleMessage("Start"),
         "startWorkout": MessageLookupByLibrary.simpleMessage("Start Workout"),
+        "startingWorkoutIn":
+            MessageLookupByLibrary.simpleMessage("Starting workout in: "),
         "steps": MessageLookupByLibrary.simpleMessage("Steps"),
+        "successfullyFinished":
+            MessageLookupByLibrary.simpleMessage("Successfully finished"),
         "todaySteps": MessageLookupByLibrary.simpleMessage("Today steps"),
         "weekGoal": MessageLookupByLibrary.simpleMessage("Week goal"),
         "weight": MessageLookupByLibrary.simpleMessage("Weight: "),
+        "weightHistory": MessageLookupByLibrary.simpleMessage("Weight history"),
         "weightMustBeBetween30And250": MessageLookupByLibrary.simpleMessage(
             "Weight must be between 30 and 250"),
         "whatsYourGoal":
@@ -107,6 +133,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Workout difficulty"),
         "workoutHistory":
             MessageLookupByLibrary.simpleMessage("Workout history"),
-        "workoutTitle": MessageLookupByLibrary.simpleMessage("Workout title")
+        "workoutTitle": MessageLookupByLibrary.simpleMessage("Workout title"),
+        "youHaveNotCreatedWorkoutsYet": MessageLookupByLibrary.simpleMessage(
+            "You have not created workouts yet"),
+        "yourWeight": MessageLookupByLibrary.simpleMessage("Your weight")
       };
 }
