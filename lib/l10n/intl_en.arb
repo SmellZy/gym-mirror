@@ -1,3 +1,6 @@
 {
-    "hiMyNameIsIO": "Hi! My name is IO."
+  "hiMyNameIsIO": "Hi! My name is IO.",
+  "Hi": "Hi!\\n",
+  "myNameIs": "My name is ",
+  "io": "IO."
 }

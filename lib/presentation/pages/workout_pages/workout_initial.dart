@@ -213,7 +213,7 @@ class _WorkoutInitialScreenState extends State<WorkoutInitialScreen> {
                           ),
                           SizedBox(
                             width: deviceWidth,
-                            height: deviceHeight * 0.59,
+                            height: deviceHeight * 0.56,
                             child: O3D.asset(
                               src: "assets/models/test_both_anim.glb",
                               controller: controller,

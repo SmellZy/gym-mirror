@@ -29,6 +29,9 @@ class _LineChartSample2State extends State<LineChartSample2> {
 
   @override
   Widget build(BuildContext context) {
+    if (widget.weightHistory.isEmpty) {
+      return Container();
+    }
     return Stack(
       children: <Widget>[
         Positioned(

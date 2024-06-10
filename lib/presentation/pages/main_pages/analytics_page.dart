@@ -1,7 +1,9 @@
 import 'dart:developer';
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:gym_mirror/data/models/finished_workout/finished_workout_model.dart';
@@ -159,6 +161,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
       double deviceHeight, double deviceWidth) {
     showModalBottomSheet(
       context: context,
+      isScrollControlled: true, // This allows the bottom sheet to expand when the keyboard appears
       builder: (context) {
         final TextEditingController nameController =
             TextEditingController(text: user.name);
@@ -168,144 +171,152 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
             TextEditingController(text: user.height.toString());
         final formKey = GlobalKey<FormState>();
 
-        return Container(
-          height: deviceHeight * 0.5,
-          decoration: BoxDecoration(
-            color: const Color.fromARGB(255, 218, 218, 218),
-            borderRadius: BorderRadius.circular(30),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
+        return Padding(
+         padding: EdgeInsets.only(
+                        bottom: MediaQuery.of(context).viewInsets.bottom),
+          child: Container(
+            height: deviceHeight * 0.6,
+            padding: EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: const Color.fromARGB(255, 218, 218, 218),
+              borderRadius: BorderRadius.circular(30),
+            ),
             child: Form(
               key: formKey,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  TextFormField(
-                    controller: nameController,
-                    style: const TextStyle(
-                        fontSize: 22,
-                        fontFamily: "Outer-Sans",
-                        fontWeight: FontWeight.normal),
-                    decoration: InputDecoration(
-                        prefixText: "Name: ",
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15)),
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                            borderSide: const BorderSide(
-                                color: Colors.blue, width: 3))),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter a name';
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    style: const TextStyle(
-                        fontSize: 22,
-                        fontFamily: "Outer-Sans",
-                        fontWeight: FontWeight.normal),
-                    controller: weightController,
-                    decoration: InputDecoration(
-                        prefixText: "Weight: ",
-                        suffixText: "kg",
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15)),
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                            borderSide: const BorderSide(
-                                color: Colors.blue, width: 3))),
-                    keyboardType: TextInputType.number,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter a weight';
-                      }
-                      final weight = double.tryParse(value);
-                      if (weight == null || weight < 30 || weight > 250) {
-                        return 'Weight must be between 30 and 250';
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    style: const TextStyle(
-                        fontSize: 22,
-                        fontFamily: "Outer-Sans",
-                        fontWeight: FontWeight.normal),
-                    controller: heightController,
-                    decoration: InputDecoration(
-                        prefixText: "Height: ",
-                        suffixText: "cm",
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15)),
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                            borderSide: const BorderSide(
-                                color: Colors.blue, width: 3))),
-                    keyboardType: TextInputType.number,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter a height';
-                      }
-                      final height = double.tryParse(value);
-                      if (height == null || height < 100 || height > 250) {
-                        return 'Height must be between 100 and 250';
-                      }
-                      return null;
-                    },
-                  ),
-                  const Spacer(),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 14, 70, 168),
-                      shadowColor: Colors.transparent,
-                      animationDuration: const Duration(milliseconds: 0),
-                      enableFeedback: false,
-                      minimumSize: Size(deviceWidth * 0.45, 60),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15)),
-                      side: const BorderSide(
-                        width: 1,
-                        color: Colors.transparent,
+              child: SafeArea(
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      TextFormField(
+                        controller: nameController,
+                        style: const TextStyle(
+                            fontSize: 22,
+                            fontFamily: "Outer-Sans",
+                            fontWeight: FontWeight.normal),
+                        decoration: InputDecoration(
+                            prefixText: "Name: ",
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15),
+                                borderSide: const BorderSide(
+                                    color: Colors.blue, width: 3))),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter a name';
+                          }
+                          return null;
+                        },
                       ),
-                    ),
-                    onPressed: () {
-                      if (formKey.currentState?.validate() ?? false) {
-                        User updatedUser = User(
-                            id: user.id,
-                            name: nameController.text,
-                            birthday: user.birthday,
-                            currentWeight:
-                                double.parse(weightController.text).toInt(),
-                            height: double.parse(heightController.text).toInt(),
-                            initialWeight: user.initialWeight,
-                            goalWeight: user.goalWeight,
-                            weightHistory: user.weightHistory,
-                            dayStreak: user.dayStreak,
-                            workoutHistory: user.workoutHistory,
-                            fitnessLevel: user.fitnessLevel);
-                        log(updatedUser.toString());
-                        userBloc.add(UpdateUserEvent(updatedUser));
-                        Navigator.pop(context);
-                      }
-                    },
-                    child: const Text(
-                      'Save changes',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 18),
-                    ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      TextFormField(
+                        style: const TextStyle(
+                            fontSize: 22,
+                            fontFamily: "Outer-Sans",
+                            fontWeight: FontWeight.normal),
+                        controller: weightController,
+                        decoration: InputDecoration(
+                            prefixText: "Weight: ",
+                            suffixText: "kg",
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15),
+                                borderSide: const BorderSide(
+                                    color: Colors.blue, width: 3))),
+                        keyboardType: TextInputType.number,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter a weight';
+                          }
+                          final weight = double.tryParse(value);
+                          if (weight == null || weight < 30 || weight > 250) {
+                            return 'Weight must be between 30 and 250';
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      TextFormField(
+                        style: const TextStyle(
+                            fontSize: 22,
+                            fontFamily: "Outer-Sans",
+                            fontWeight: FontWeight.normal),
+                        controller: heightController,
+                        decoration: InputDecoration(
+                            prefixText: "Height: ",
+                            suffixText: "cm",
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15),
+                                borderSide: const BorderSide(
+                                    color: Colors.blue, width: 3))),
+                        keyboardType: TextInputType.number,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter a height';
+                          }
+                          final height = double.tryParse(value);
+                          if (height == null || height < 100 || height > 250) {
+                            return 'Height must be between 100 and 250';
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color.fromARGB(255, 14, 70, 168),
+                          shadowColor: Colors.transparent,
+                          animationDuration: const Duration(milliseconds: 0),
+                          enableFeedback: false,
+                          minimumSize: Size(deviceWidth * 0.45, 60),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15)),
+                          side: const BorderSide(
+                            width: 1,
+                            color: Colors.transparent,
+                          ),
+                        ),
+                        onPressed: () {
+                          if (formKey.currentState?.validate() ?? false) {
+                            User updatedUser = User(
+                                id: user.id,
+                                name: nameController.text,
+                                birthday: user.birthday,
+                                currentWeight:
+                                    double.parse(weightController.text).toInt(),
+                                height: double.parse(heightController.text).toInt(),
+                                initialWeight: user.initialWeight,
+                                goalWeight: user.goalWeight,
+                                weightHistory: user.weightHistory,
+                                dayStreak: user.dayStreak,
+                                workoutHistory: user.workoutHistory,
+                                fitnessLevel: user.fitnessLevel);
+                            log(updatedUser.toString());
+                            userBloc.add(UpdateUserEvent(updatedUser));
+                            Navigator.pop(context);
+                          }
+                        },
+                        child: const Text(
+                          'Save changes',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 18),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
             ),
           ),
@@ -314,24 +325,25 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
     );
   }
 
-  Color _getColorForDifficulty(String difficulty) {
-  switch (difficulty) {
-    case 'Easy':
-      return Colors.green;
-    case 'Medium':
-      return Colors.yellow;
-    case 'Hard':
-      return Colors.red;
-    case 'Expert':
-      return Colors.purple;
-    default:
-      return const Color.fromARGB(255, 169, 169, 169); // Default color
-  }
-}
 
-String formatDate(DateTime date) {
-  return DateFormat('MMMM d, y').format(date);
-}
+  Color _getColorForDifficulty(String difficulty) {
+    switch (difficulty) {
+      case 'Easy':
+        return Colors.green;
+      case 'Medium':
+        return Colors.yellow;
+      case 'Hard':
+        return Colors.red;
+      case 'Expert':
+        return Colors.purple;
+      default:
+        return const Color.fromARGB(255, 169, 169, 169); // Default color
+    }
+  }
+
+  String formatDate(DateTime date) {
+    return DateFormat('MMMM d, y').format(date);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -612,124 +624,201 @@ String formatDate(DateTime date) {
                                                       .toDouble()),
                                             )
                                           ]),
-                                          Container(
-                                            width: deviceWidth,
-                                            height: deviceHeight*0.25,
-                                            child: LineChartSample2(weightHistory: state.user.weightHistory!)),
-                                      const Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: [
-                                          Text("Workout history",
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontFamily: "Outer-Sans",
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 24
-                                          ),)
-                                        ],
+                                      Container(
+                                        width: deviceWidth,
+                                        height: deviceHeight * 0.25,
+                                        child: state.user.weightHistory !=
+                                                    null &&
+                                                state.user.weightHistory!
+                                                    .isNotEmpty
+                                            ? LineChartSample2(
+                                                weightHistory:
+                                                    state.user.weightHistory!)
+                                            : SizedBox(
+                                              height: 0,
+                                            ),
                                       ),
+                                      state.user.workoutHistory != null && state.user.workoutHistory!.isNotEmpty 
+                                       ? const Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            "Workout history",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontFamily: "Outer-Sans",
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 24),
+                                          )
+                                        ],
+                                      ) : SizedBox(height: 0),
                                       const SizedBox(
                                         height: 20,
                                       ),
                                       ListView.builder(
-                                          shrinkWrap: true,
-                                          physics:
-                                              const NeverScrollableScrollPhysics(),
-                                          itemCount:
-                                              state.user.workoutHistory?.length,
-                                          itemBuilder: (context, index) {
+                                        shrinkWrap: true,
+                                        physics:
+                                            const NeverScrollableScrollPhysics(),
+                                        itemCount:
+                                            state.user.workoutHistory?.length ??
+                                                0,
+                                        itemBuilder: (context, index) {
+                                          if (state.user.workoutHistory !=
+                                                  null &&
+                                              state.user.workoutHistory!
+                                                  .isNotEmpty) {
                                             return Container(
                                               margin: const EdgeInsets.only(
                                                   bottom: 20,
                                                   left: 5,
                                                   right: 5),
                                               decoration: BoxDecoration(
-                                                  border: Border.all(
-                                                      width: 2,
-                                                      color: Colors.grey),
-                                                  borderRadius:
-                                                      BorderRadius.circular(15),
-                                                  gradient: LinearGradient(
-                                                    colors: [
-                                                      Colors.grey
-                                                          .withOpacity(0.3),
-                                                      const Color.fromARGB(
-                                                              255, 80, 29, 220)
-                                                          .withOpacity(0.3),
-                                                    ],
-                                                    begin: Alignment.topLeft,
-                                                    end: Alignment.bottomRight,
+                                                border: Border.all(
+                                                    width: 2,
+                                                    color: Colors.grey),
+                                                borderRadius:
+                                                    BorderRadius.circular(15),
+                                                gradient: LinearGradient(
+                                                  colors: [
+                                                    Colors.grey
+                                                        .withOpacity(0.3),
+                                                    const Color.fromARGB(
+                                                            255, 80, 29, 220)
+                                                        .withOpacity(0.3),
+                                                  ],
+                                                  begin: Alignment.topLeft,
+                                                  end: Alignment.bottomRight,
+                                                ),
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Colors.white
+                                                        .withOpacity(0.05)
+                                                        .withOpacity(0.03),
+                                                    offset:
+                                                        const Offset(-10, -10),
+                                                    spreadRadius: 0,
+                                                    blurRadius: 10,
                                                   ),
-                                                  boxShadow: [
-                                                    BoxShadow(
-                                                        color: Colors.white
-                                                            .withOpacity(0.05)
-                                                            .withOpacity(0.03),
-                                                        offset: const Offset(
-                                                            -10, -10),
-                                                        spreadRadius: 0,
-                                                        blurRadius: 10),
-                                                    BoxShadow(
-                                                        color: Colors.black87
-                                                            .withOpacity(0.3),
-                                                        offset: const Offset(
-                                                            10, 10),
-                                                        spreadRadius: 0,
-                                                        blurRadius: 10)
-                                                  ]),
+                                                  BoxShadow(
+                                                    color: Colors.black87
+                                                        .withOpacity(0.3),
+                                                    offset:
+                                                        const Offset(10, 10),
+                                                    spreadRadius: 0,
+                                                    blurRadius: 10,
+                                                  ),
+                                                ],
+                                              ),
                                               child: Padding(
                                                 padding:
                                                     const EdgeInsets.all(8.0),
                                                 child: Column(
-                                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
                                                   children: [
                                                     Row(
-                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
                                                       children: [
-                                                        Text(state.user.workoutHistory![index].workout.title.toString(),
-                                                        style: const TextStyle(
-                                                          fontFamily: "Outer-Sans",
-                                                          fontSize: 24,
-                                                          fontWeight: FontWeight.bold,
-                                                          color: Colors.white
-                                                        ),)
+                                                        Text(
+                                                          state
+                                                              .user
+                                                              .workoutHistory![
+                                                                  index]
+                                                              .workout
+                                                              .title
+                                                              .toString(),
+                                                          style:
+                                                              const TextStyle(
+                                                            fontFamily:
+                                                                "Outer-Sans",
+                                                            fontSize: 24,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            color: Colors.white,
+                                                          ),
+                                                        ),
                                                       ],
                                                     ),
                                                     Row(
-                                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceAround,
                                                       children: [
-                                                        Text(state.user.workoutHistory![index].workout.difficulty.toString(), 
-                                                        style: TextStyle(
-                                                          color: _getColorForDifficulty(state.user.workoutHistory![index].workout.difficulty ?? "Easy"),
-                                                          fontFamily: "Outer-Sans",
-                                                          fontSize: 20,
-                                                          fontWeight: FontWeight.bold
-                                                        ),),
                                                         Text(
-                                                          state.user.workoutHistory![index].workout.exercises!.length.toString(), style: 
-                                                          const TextStyle(
-                                                          color: Colors.white,
-                                                          fontFamily: "Outer-Sans",
-                                                          fontSize: 20,
-                                                          fontWeight: FontWeight.bold
-                                                        ),
+                                                          state
+                                                              .user
+                                                              .workoutHistory![
+                                                                  index]
+                                                              .workout
+                                                              .difficulty
+                                                              .toString(),
+                                                          style: TextStyle(
+                                                            color:
+                                                                _getColorForDifficulty(
+                                                              state
+                                                                      .user
+                                                                      .workoutHistory![
+                                                                          index]
+                                                                      .workout
+                                                                      .difficulty ??
+                                                                  "Easy",
+                                                            ),
+                                                            fontFamily:
+                                                                "Outer-Sans",
+                                                            fontSize: 20,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
                                                         ),
                                                         Text(
-                                                          formatDate(state.user.workoutHistory![index].date), style: 
-                                                          const TextStyle(
-                                                          color: Colors.white,
-                                                          fontFamily: "Outer-Sans",
-                                                          fontSize: 20,
-                                                          fontWeight: FontWeight.bold
+                                                          state
+                                                              .user
+                                                              .workoutHistory![
+                                                                  index]
+                                                              .workout
+                                                              .exercises!
+                                                              .length
+                                                              .toString(),
+                                                          style:
+                                                              const TextStyle(
+                                                            color: Colors.white,
+                                                            fontFamily:
+                                                                "Outer-Sans",
+                                                            fontSize: 20,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
                                                         ),
+                                                        Text(
+                                                          formatDate(state
+                                                              .user
+                                                              .workoutHistory![
+                                                                  index]
+                                                              .date),
+                                                          style:
+                                                              const TextStyle(
+                                                            color: Colors.white,
+                                                            fontFamily:
+                                                                "Outer-Sans",
+                                                            fontSize: 20,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
                                                         ),
                                                       ],
-                                                    )
+                                                    ),
                                                   ],
                                                 ),
                                               ),
                                             );
-                                          })
+                                          } else {
+                                            return Container();
+                                          }
+                                        },
+                                      ),
                                     ],
                                   ),
                                 )),

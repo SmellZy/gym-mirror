@@ -19,7 +19,7 @@ class GreetingThirdPage extends StatelessWidget {
                   fontFamily: "Outer-Sans",
                   fontWeight: FontWeight.w200)),
           TextSpan(
-              text: "3 questions ",
+              text: "4 questions ",
               style: TextStyle(
                   fontSize: 34,
                   fontFamily: "Outer-Sans",

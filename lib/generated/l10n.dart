@@ -59,6 +59,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Hi!\n`
+  String get Hi {
+    return Intl.message(
+      'Hi!\\n',
+      name: 'Hi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My name is `
+  String get myNameIs {
+    return Intl.message(
+      'My name is ',
+      name: 'myNameIs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `IO.`
+  String get io {
+    return Intl.message(
+      'IO.',
+      name: 'io',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
@@ -67,6 +97,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   List<Locale> get supportedLocales {
     return const <Locale>[
       Locale.fromSubtags(languageCode: 'en'),
+      Locale.fromSubtags(languageCode: 'uk'),
     ];
   }
 
