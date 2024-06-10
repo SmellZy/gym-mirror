@@ -1,6 +1,13 @@
 {
-    "hiMyNameIsIO": "Привіт! Мене звуть IO",
-    "Hi": "Привіт! \n",
-    "myNameIs": "Мене звуть ",
-    "io": "IO."
-  }
+  "hiMyNameIsIO": "Привіт! Мене звуть IO",
+  "Hi": "Привіт! \n",
+  "myNameIs": "Мене звуть ",
+  "io": "IO.",
+  "iWillHelpYou": "Я допоможу тобі \n",
+  "withIO": "з ",
+  "exercises": "вправами!",
+  "answer": "Дайте відповідь ",
+  "Questions4": "на 4 запитання ",
+  "beforeWeStartOur": "перед тим як почати \n",
+  "firstTraining": "перше тренування"
+}

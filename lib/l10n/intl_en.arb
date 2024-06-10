@@ -1,6 +1,13 @@
 {
   "hiMyNameIsIO": "Hi! My name is IO.",
-  "Hi": "Hi!\\n",
+  "Hi": "Hi!\n",
   "myNameIs": "My name is ",
-  "io": "IO."
+  "io": "IO.",
+  "iWillHelpYou": "I will help you \n",
+  "withIO": "with ",
+  "exercises": "exercises!",
+  "answer": "Answer ",
+  "Questions4": "4 questions ",
+  "beforeWeStartOur": "before we start our \n",
+  "firstTraining": "first training"
 }

@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:gym_mirror/generated/l10n.dart';
 
 @RoutePage()
 class GreetingSecondPage extends StatelessWidget {
@@ -11,22 +12,22 @@ class GreetingSecondPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return RichText(
         textAlign: TextAlign.center,
-        text: const TextSpan(children: [
+        text:  TextSpan(children: [
           TextSpan(
-              text: "I will help you \n",
-              style: TextStyle(
+              text: S.of(context).iWillHelpYou,
+              style: const TextStyle(
                   fontSize: 36,
                   fontFamily: "Outer-Sans",
                   fontWeight: FontWeight.w200)),
           TextSpan(
-              text: "with ",
-              style: TextStyle(
+              text: S.of(context).withIO,
+              style: const TextStyle(
                   fontSize: 36,
                   fontFamily: "Outer-Sans",
                   fontWeight: FontWeight.w200)),
           TextSpan(
-              text: "exercises!",
-              style: TextStyle(
+              text: S.of(context).exercises,
+              style: const TextStyle(
                   fontSize: 36,
                   fontFamily: "Outer-Sans",
                   fontWeight: FontWeight.bold))

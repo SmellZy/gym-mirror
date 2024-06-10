@@ -63,7 +63,7 @@ class S {
   /// `Hi!\n`
   String get Hi {
     return Intl.message(
-      'Hi!\\n',
+      'Hi!\n',
       name: 'Hi',
       desc: '',
       args: [],
@@ -85,6 +85,76 @@ class S {
     return Intl.message(
       'IO.',
       name: 'io',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I will help you \n`
+  String get iWillHelpYou {
+    return Intl.message(
+      'I will help you \n',
+      name: 'iWillHelpYou',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `with `
+  String get withIO {
+    return Intl.message(
+      'with ',
+      name: 'withIO',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `exercises!`
+  String get exercises {
+    return Intl.message(
+      'exercises!',
+      name: 'exercises',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Answer `
+  String get answer {
+    return Intl.message(
+      'Answer ',
+      name: 'answer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `4 questions `
+  String get Questions4 {
+    return Intl.message(
+      '4 questions ',
+      name: 'Questions4',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `before we start our \n`
+  String get beforeWeStartOur {
+    return Intl.message(
+      'before we start our \n',
+      name: 'beforeWeStartOur',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `first training`
+  String get firstTraining {
+    return Intl.message(
+      'first training',
+      name: 'firstTraining',
       desc: '',
       args: [],
     );
