@@ -29,19 +29,19 @@ class _HomePageState extends State<HomePage> {
   final _workoutBloc = WorkoutBloc(GetIt.I<WorkoutRepository>());
   final _exerciseBloc = ExerciseBloc(GetIt.I<ExerciseRepository>());
   final userBloc = UserBloc(GetIt.I<UserRepository>());
-  final exercisesData = ExercisesData();
 
   @override
   void initState() {
     _workoutBloc.add(GetWorkoutsEvent());
-    _exerciseBloc.add(CreateExerciseEvent(exercisesData.exercise1));
-    _exerciseBloc.add(CreateExerciseEvent(exercisesData.exercise2));
     userBloc.add(GetUserEvent());
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    final exercisesData = ExercisesData(context);
+    _exerciseBloc.add(CreateExerciseEvent(exercisesData.exercise1));
+    _exerciseBloc.add(CreateExerciseEvent(exercisesData.exercise2));
     return BackgroundContainer(
       backgroundImage: const AssetImage("assets/background/third_gradient.png"),
       child: SafeArea(

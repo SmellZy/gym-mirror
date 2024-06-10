@@ -27,14 +27,31 @@ class MessageLookup extends MessageLookupByLibrary {
         "answer": MessageLookupByLibrary.simpleMessage("Answer "),
         "beforeWeStartOur":
             MessageLookupByLibrary.simpleMessage("before we start our \n"),
+        "bicycle": MessageLookupByLibrary.simpleMessage("Bicycle"),
+        "bicylceDescription": MessageLookupByLibrary.simpleMessage(
+            "Вправа для тренування м\'язів ніг, серцево-судинної системи."),
+        "createWorkout": MessageLookupByLibrary.simpleMessage("Create workout"),
+        "easyDiff": MessageLookupByLibrary.simpleMessage("Easy"),
         "exercises": MessageLookupByLibrary.simpleMessage("exercises!"),
+        "expertDiff": MessageLookupByLibrary.simpleMessage("Expert"),
         "firstTraining": MessageLookupByLibrary.simpleMessage("first training"),
+        "hardDiff": MessageLookupByLibrary.simpleMessage("Hard"),
         "hiMyNameIsIO":
             MessageLookupByLibrary.simpleMessage("Hi! My name is IO."),
         "iWillHelpYou":
             MessageLookupByLibrary.simpleMessage("I will help you \n"),
         "io": MessageLookupByLibrary.simpleMessage("IO."),
+        "mediumDiff": MessageLookupByLibrary.simpleMessage("Medium"),
+        "mill": MessageLookupByLibrary.simpleMessage("Mill"),
+        "millDescription":
+            MessageLookupByLibrary.simpleMessage("Exercise for leg muscles"),
         "myNameIs": MessageLookupByLibrary.simpleMessage("My name is "),
-        "withIO": MessageLookupByLibrary.simpleMessage("with ")
+        "nothing": MessageLookupByLibrary.simpleMessage("Nothing"),
+        "selectExercises":
+            MessageLookupByLibrary.simpleMessage("Select exercises"),
+        "withIO": MessageLookupByLibrary.simpleMessage("with "),
+        "workoutDifficulty":
+            MessageLookupByLibrary.simpleMessage("Workout difficulty"),
+        "workoutTitle": MessageLookupByLibrary.simpleMessage("Workout title")
       };
 }

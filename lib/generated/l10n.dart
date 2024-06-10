@@ -159,6 +159,136 @@ class S {
       args: [],
     );
   }
+
+  /// `Mill`
+  String get mill {
+    return Intl.message(
+      'Mill',
+      name: 'mill',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exercise for leg muscles`
+  String get millDescription {
+    return Intl.message(
+      'Exercise for leg muscles',
+      name: 'millDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bicycle`
+  String get bicycle {
+    return Intl.message(
+      'Bicycle',
+      name: 'bicycle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Вправа для тренування м'язів ніг, серцево-судинної системи.`
+  String get bicylceDescription {
+    return Intl.message(
+      'Вправа для тренування м\'язів ніг, серцево-судинної системи.',
+      name: 'bicylceDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Easy`
+  String get easyDiff {
+    return Intl.message(
+      'Easy',
+      name: 'easyDiff',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Medium`
+  String get mediumDiff {
+    return Intl.message(
+      'Medium',
+      name: 'mediumDiff',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hard`
+  String get hardDiff {
+    return Intl.message(
+      'Hard',
+      name: 'hardDiff',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Expert`
+  String get expertDiff {
+    return Intl.message(
+      'Expert',
+      name: 'expertDiff',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create workout`
+  String get createWorkout {
+    return Intl.message(
+      'Create workout',
+      name: 'createWorkout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nothing`
+  String get nothing {
+    return Intl.message(
+      'Nothing',
+      name: 'nothing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Workout title`
+  String get workoutTitle {
+    return Intl.message(
+      'Workout title',
+      name: 'workoutTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Workout difficulty`
+  String get workoutDifficulty {
+    return Intl.message(
+      'Workout difficulty',
+      name: 'workoutDifficulty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select exercises`
+  String get selectExercises {
+    return Intl.message(
+      'Select exercises',
+      name: 'selectExercises',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

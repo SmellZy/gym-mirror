@@ -1,6 +1,4 @@
 import 'dart:developer';
-
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -8,10 +6,9 @@ import 'package:gym_mirror/data/models/exercise/exercise_model.dart';
 import 'package:gym_mirror/domain/entities/exercise.dart';
 import 'package:gym_mirror/domain/entities/workout.dart';
 import 'package:gym_mirror/domain/repositories/exercise_repository.dart';
-import 'package:gym_mirror/domain/repositories/workout_repository.dart';
+import 'package:gym_mirror/generated/l10n.dart';
 import 'package:gym_mirror/presentation/bloc/exercise/exercise_bloc.dart';
 import 'package:gym_mirror/presentation/bloc/workout/workout_bloc.dart';
-import 'package:gym_mirror/router/router.dart';
 import 'package:multi_dropdown/multiselect_dropdown.dart';
 
 class CreateWorkoutModalSheet extends StatefulWidget {
@@ -42,13 +39,13 @@ class _CreateWorkoutModalSheetState extends State<CreateWorkoutModalSheet> {
   String difficultyToString(Difficulty difficulty) {
     switch (difficulty) {
       case Difficulty.easy:
-        return "Easy";
+        return S.of(context).easyDiff;
       case Difficulty.medium:
-        return "Medium";
+        return S.of(context).mediumDiff;
       case Difficulty.hard:
-        return "Hard";
+        return S.of(context).hardDiff;
       case Difficulty.expert:
-        return "Expert";
+        return S.of(context).expertDiff;
     }
   }
 
@@ -68,12 +65,12 @@ class _CreateWorkoutModalSheetState extends State<CreateWorkoutModalSheet> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            const Row(
+             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Create workout",
-                  style: TextStyle(
+                  S.of(context).createWorkout,
+                  style: const TextStyle(
                       fontFamily: "Outer-Sans",
                       fontSize: 24,
                       color: Color.fromARGB(255, 213, 211, 211),
@@ -106,7 +103,7 @@ class _CreateWorkoutModalSheetState extends State<CreateWorkoutModalSheet> {
                           );
                         } else if (state is ExercisesLoaded) {
                           if (state.exercises.isEmpty) {
-                            return const Center(child: Text("Nothing"));
+                            return Center(child: Text(S.of(context).nothing));
                           } else {
                             return Column(
                               children: [
@@ -144,10 +141,10 @@ class _CreateWorkoutModalSheetState extends State<CreateWorkoutModalSheet> {
                                             workoutName = value;
                                           });
                                         },
-                                        decoration: const InputDecoration(
+                                        decoration: InputDecoration(
                                           border: InputBorder.none,
-                                          labelText: "Workout title",
-                                          labelStyle: TextStyle(
+                                          labelText: S.of(context).workoutTitle,
+                                          labelStyle: const TextStyle(
                                             fontSize: 20,
                                             fontWeight: FontWeight.w600,
                                             color: Colors.white,
@@ -189,10 +186,10 @@ class _CreateWorkoutModalSheetState extends State<CreateWorkoutModalSheet> {
                                           selectedDifficulty = newValue!;
                                         });
                                       },
-                                      decoration: const InputDecoration(
+                                      decoration: InputDecoration(
                                         border: InputBorder.none,
-                                        labelText: "Workout difficulty",
-                                        labelStyle: TextStyle(
+                                        labelText: S.of(context).workoutDifficulty,
+                                        labelStyle: const TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.w600,
                                           color: Colors.white,
@@ -277,8 +274,8 @@ class _CreateWorkoutModalSheetState extends State<CreateWorkoutModalSheet> {
                                             radius: 10,
                                             labelColor: Colors.grey,
                                             ),
-                                            clearIcon: Icon(Icons.close_outlined, size: 20, color: Colors.grey,),
-                                            suffixIcon: Icon(Icons.arrow_drop_down, size: 26, color: Colors.grey,),
+                                            clearIcon: const Icon(Icons.close_outlined, size: 20, color: Colors.grey,),
+                                            suffixIcon: const Icon(Icons.arrow_drop_down, size: 26, color: Colors.grey,),
                                         dropdownHeight: 100,
                                         optionTextStyle: const TextStyle(
                                             fontSize: 18,
@@ -300,7 +297,7 @@ class _CreateWorkoutModalSheetState extends State<CreateWorkoutModalSheet> {
                                         optionsBackgroundColor:
                                             const Color.fromARGB(
                                                 255, 70, 77, 83),
-                                        hint: "Select exercises",
+                                        hint: S.of(context).selectExercises,
                                         hintStyle: const TextStyle(
                                             fontSize: 20,
                                             fontWeight: FontWeight.w600,
@@ -423,7 +420,7 @@ class _CreateWorkoutModalSheetState extends State<CreateWorkoutModalSheet> {
                                         borderRadius: BorderRadius.circular(15),
                                       ),
                                     ),
-                                    child: const Text("Create workout", 
+                                    child: Text(S.of(context).createWorkout,
                                     style: TextStyle(color: Colors.white, fontFamily: "Outer-Sans", fontSize: 22, fontWeight: FontWeight.bold),),
                                   ),
                                 ),
@@ -431,7 +428,7 @@ class _CreateWorkoutModalSheetState extends State<CreateWorkoutModalSheet> {
                             );
                           }
                         }
-                        return const Center(child: Text("Nothing"));
+                        return Center(child: Text(S.of(context).nothing));
                       },
                     ),
                   ),

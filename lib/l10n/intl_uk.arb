@@ -9,5 +9,18 @@
   "answer": "Дайте відповідь ",
   "Questions4": "на 4 запитання ",
   "beforeWeStartOur": "перед тим як почати \n",
-  "firstTraining": "перше тренування"
+  "firstTraining": "перше тренування",
+  "mill": "Мельниця",
+  "millDescription": "Вправа для тренування м'язів ніг, сідниць і спини.",
+  "bicycle": "Велосипед",
+  "bicylceDescription": "Вправа для тренування м'язів ніг, серцево-судинної системи.",
+  "easyDiff": "Easy",
+  "mediumDiff": "Medium",
+  "hardDiff": "Hard",
+  "expertDiff": "Expert",
+  "createWorkout": "Create workout",
+  "nothing": "Nothing",
+  "workoutTitle": "Workout title",
+  "workoutDifficulty": "Workout difficulty",
+  "selectExercises": "Select exercises"
 }
