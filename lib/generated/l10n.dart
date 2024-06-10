@@ -409,6 +409,296 @@ class S {
       args: [],
     );
   }
+
+  /// `Steps`
+  String get steps {
+    return Intl.message(
+      'Steps',
+      name: 'steps',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name: `
+  String get name {
+    return Intl.message(
+      'Name: ',
+      name: 'name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a name`
+  String get pleaseEnterAName {
+    return Intl.message(
+      'Please enter a name',
+      name: 'pleaseEnterAName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Weight: `
+  String get weight {
+    return Intl.message(
+      'Weight: ',
+      name: 'weight',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `kg`
+  String get kg {
+    return Intl.message(
+      'kg',
+      name: 'kg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a weight`
+  String get pleaseEnterAWeight {
+    return Intl.message(
+      'Please enter a weight',
+      name: 'pleaseEnterAWeight',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Weight must be between 30 and 250`
+  String get weightMustBeBetween30And250 {
+    return Intl.message(
+      'Weight must be between 30 and 250',
+      name: 'weightMustBeBetween30And250',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Height: `
+  String get height {
+    return Intl.message(
+      'Height: ',
+      name: 'height',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `cm`
+  String get cm {
+    return Intl.message(
+      'cm',
+      name: 'cm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a height`
+  String get pleaseEnterAHeight {
+    return Intl.message(
+      'Please enter a height',
+      name: 'pleaseEnterAHeight',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Height must be between 100 and 250`
+  String get heightMustBeBetween100And250 {
+    return Intl.message(
+      'Height must be between 100 and 250',
+      name: 'heightMustBeBetween100And250',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save changes`
+  String get saveChanges {
+    return Intl.message(
+      'Save changes',
+      name: 'saveChanges',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Day 1 - Leg Day`
+  String get day1LegDay {
+    return Intl.message(
+      'Day 1 - Leg Day',
+      name: 'day1LegDay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Today steps`
+  String get todaySteps {
+    return Intl.message(
+      'Today steps',
+      name: 'todaySteps',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Need access`
+  String get needAccess {
+    return Intl.message(
+      'Need access',
+      name: 'needAccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Workout history`
+  String get workoutHistory {
+    return Intl.message(
+      'Workout history',
+      name: 'workoutHistory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Start Workout`
+  String get startWorkout {
+    return Intl.message(
+      'Start Workout',
+      name: 'startWorkout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `day 1 - `
+  String get day1 {
+    return Intl.message(
+      'day 1 - ',
+      name: 'day1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Leg Day`
+  String get legDay {
+    return Intl.message(
+      'Leg Day',
+      name: 'legDay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Day Streak`
+  String get dayStreak {
+    return Intl.message(
+      'Day Streak',
+      name: 'dayStreak',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Record - 32`
+  String get record32 {
+    return Intl.message(
+      'Record - 32',
+      name: 'record32',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Week goal`
+  String get weekGoal {
+    return Intl.message(
+      'Week goal',
+      name: 'weekGoal',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Max Streak - 4`
+  String get maxStreak4 {
+    return Intl.message(
+      'Max Streak - 4',
+      name: 'maxStreak4',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `day 21 - `
+  String get day21 {
+    return Intl.message(
+      'day 21 - ',
+      name: 'day21',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No workouts available`
+  String get noWorkoutsAvailable {
+    return Intl.message(
+      'No workouts available',
+      name: 'noWorkoutsAvailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Available Workouts`
+  String get availableWorkouts {
+    return Intl.message(
+      'Available Workouts',
+      name: 'availableWorkouts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exercise count`
+  String get exerciseCount {
+    return Intl.message(
+      'Exercise count',
+      name: 'exerciseCount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Difficulty`
+  String get difficulty {
+    return Intl.message(
+      'Difficulty',
+      name: 'difficulty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create new workout`
+  String get createNewWorkout {
+    return Intl.message(
+      'Create new workout',
+      name: 'createNewWorkout',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

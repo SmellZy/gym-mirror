@@ -2,10 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-// ignore: unused_import
-import 'package:gym_mirror/domain/entities/workout.dart';
 import 'package:gym_mirror/domain/repositories/user_repository.dart';
 import 'package:gym_mirror/domain/repositories/workout_repository.dart';
+import 'package:gym_mirror/generated/l10n.dart';
 import 'package:gym_mirror/presentation/bloc/user/user_bloc.dart';
 import 'package:gym_mirror/presentation/bloc/workout/workout_bloc.dart';
 import 'package:gym_mirror/presentation/widgets/background_container.dart';
@@ -76,8 +75,8 @@ class _WorkoutPageState extends State<WorkoutPage> {
                           ),
                           child: Text(
                             state.workouts.isEmpty
-                                ? "No workouts available"
-                                : "Available Workouts",
+                                ? S.of(context).noWorkoutsAvailable
+                                : S.of(context).availableWorkouts,
                             style: const TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
@@ -188,9 +187,9 @@ class _WorkoutPageState extends State<WorkoutPage> {
                                                             CrossAxisAlignment
                                                                 .center,
                                                         children: [
-                                                          const Text(
-                                                            "Exercise count",
-                                                            style: TextStyle(
+                                                          Text(
+                                                            S.of(context).exerciseCount,
+                                                            style: const TextStyle(
                                                               color: Color.fromARGB(255, 195, 197, 168),
                                                               fontSize: 18,
                                                               overflow:
@@ -223,9 +222,9 @@ class _WorkoutPageState extends State<WorkoutPage> {
                                                       ),
                                                       Column(
                                                         children: [
-                                                          const Text(
-                                                            "Difficulty",
-                                                            style: TextStyle(
+                                                          Text(
+                                                            S.of(context).difficulty,
+                                                            style: const TextStyle(
                                                               color: Color.fromARGB(255, 195, 197, 168),
                                                               fontSize: 18,
                                                               overflow:
@@ -242,7 +241,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
                                                             "${workout.difficulty}",
                                                             style:
                                                                  TextStyle(
-                                                              color: _getColorForDifficulty(workout.difficulty ?? "Easy"),
+                                                              color: _getColorForDifficulty(workout.difficulty ?? S.of(context).easyDiff),
                                                               fontSize: 18,
                                                               overflow:
                                                                   TextOverflow
@@ -295,9 +294,9 @@ class _WorkoutPageState extends State<WorkoutPage> {
                                 borderRadius: BorderRadius.circular(15),
                               ),
                             ),
-                            child: const Text(
-                              "Create new workout",
-                              style: TextStyle(
+                            child: Text(
+                              S.of(context).createNewWorkout,
+                              style: const TextStyle(
                                 color: Colors.white,
                                 fontFamily: "Outer-Sans",
                                 fontWeight: FontWeight.bold,

@@ -5,6 +5,7 @@ import 'package:gym_mirror/data.dart';
 import 'package:gym_mirror/domain/repositories/exercise_repository.dart';
 import 'package:gym_mirror/domain/repositories/user_repository.dart';
 import 'package:gym_mirror/domain/repositories/workout_repository.dart';
+import 'package:gym_mirror/generated/l10n.dart';
 import 'package:gym_mirror/presentation/bloc/exercise/exercise_bloc.dart';
 import 'package:gym_mirror/presentation/bloc/user/user_bloc.dart';
 import 'package:gym_mirror/presentation/bloc/workout/workout_bloc.dart';
@@ -98,9 +99,9 @@ class _HomePageState extends State<HomePage> {
                             isBottomSheet = false;
                           }));
                     },
-                    child: const Text(
-                      "Start Workout",
-                      style: TextStyle(
+                    child: Text(
+                      S.of(context).startWorkout,
+                      style: const TextStyle(
                           color: Colors.white,
                           fontFamily: "Outer-Sans",
                           fontWeight: FontWeight.bold,
@@ -148,16 +149,16 @@ class _topPanelSheetFalse extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "day 1 - ".toUpperCase(),
+                    S.of(context).day1.toUpperCase(),
                     style: const TextStyle(
                         color: Colors.white,
                         fontSize: 24,
                         fontFamily: "Outer-Sans",
                         fontWeight: FontWeight.w900),
                   ),
-                  const Text(
-                    "Leg Day",
-                    style: TextStyle(
+                   Text(
+                    S.of(context).legDay,
+                    style: const TextStyle(
                         color: Colors.white,
                         fontSize: 24,
                         fontFamily: "Outer-Sans",
@@ -194,7 +195,7 @@ class _topPanelSheetFalse extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Column(
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
@@ -206,16 +207,16 @@ class _topPanelSheetFalse extends StatelessWidget {
                             fontWeight: FontWeight.w900),
                       ),
                       Text(
-                        "Day Streak",
-                        style: TextStyle(
+                        S.of(context).dayStreak,
+                        style: const TextStyle(
                             color: Colors.white,
                             fontSize: 14,
                             fontFamily: "Outer-Sans",
                             fontWeight: FontWeight.w400),
                       ),
                       Text(
-                        "Record - 32",
-                        style: TextStyle(
+                        S.of(context).record32,
+                        style: const TextStyle(
                             color: Color.fromARGB(255, 173, 173, 173),
                             fontSize: 10,
                             fontFamily: "Outer-Sans",
@@ -243,10 +244,10 @@ class _topPanelSheetFalse extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Column(
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         "1/7",
                         style: TextStyle(
                             color: Colors.white,
@@ -255,15 +256,15 @@ class _topPanelSheetFalse extends StatelessWidget {
                             fontWeight: FontWeight.w900),
                       ),
                       Text(
-                        "Week goal",
-                        style: TextStyle(
+                        S.of(context).weekGoal,
+                        style: const TextStyle(
                             color: Colors.white,
                             fontSize: 14,
                             fontFamily: "Outer-Sans",
                             fontWeight: FontWeight.w400),
                       ),
                       Text(
-                        "Max Streak - 4",
+                        S.of(context).maxStreak4,
                         style: TextStyle(
                             color: Color.fromARGB(255, 173, 173, 173),
                             fontSize: 10,
@@ -290,6 +291,7 @@ class _topPanelSheetTrue extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var date = DateTime.now();
     return Column(children: [
       //main column
       Row(
@@ -303,21 +305,12 @@ class _topPanelSheetTrue extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    "Monday, ".toUpperCase(),
+                    DateFormat('EEEE, MMM d').format(date).toUpperCase(),
                     style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
                         fontFamily: "Outer-Sans",
-                        fontWeight: FontWeight.w400),
+                        fontSize: 16,
+                        color: Colors.white),
                   ),
-                  Text(
-                    "April, 23".toUpperCase(),
-                    style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
-                        fontFamily: "Outer-Sans",
-                        fontWeight: FontWeight.w400),
-                  )
                 ],
               ),
               Row(
@@ -325,16 +318,16 @@ class _topPanelSheetTrue extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "day 21 - ".toUpperCase(),
+                    S.of(context).day21.toUpperCase(),
                     style: const TextStyle(
                         color: Colors.white,
                         fontSize: 24,
                         fontFamily: "Outer-Sans",
                         fontWeight: FontWeight.w900),
                   ),
-                  const Text(
-                    "Leg Day",
-                    style: TextStyle(
+                  Text(
+                    S.of(context).legDay,
+                    style: const TextStyle(
                         color: Colors.white,
                         fontSize: 24,
                         fontFamily: "Outer-Sans",

@@ -9,6 +9,7 @@ import 'package:gym_mirror/domain/entities/user.dart';
 import 'package:gym_mirror/domain/repositories/finished_workout_repository.dart';
 import 'package:gym_mirror/domain/repositories/user_repository.dart';
 import 'package:gym_mirror/domain/repositories/workout_repository.dart';
+import 'package:gym_mirror/generated/l10n.dart';
 import 'package:gym_mirror/presentation/bloc/finished_workout/finished_workout_bloc.dart';
 import 'package:gym_mirror/presentation/bloc/user/user_bloc.dart';
 import 'package:gym_mirror/presentation/bloc/workout/workout_bloc.dart';
@@ -107,7 +108,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
           water = water;
           stepsProgress = ((todaySteps ?? 0) / stepsGoal * 100).toInt();
           Color stepsColor = _getStepsColor(stepsProgress);
-          chartData = [_ChartData("Steps", todaySteps ?? 0, stepsColor)];
+          chartData = [_ChartData(S.of(context).steps, todaySteps ?? 0, stepsColor)];
         });
       } else {
         setState(() {
@@ -171,7 +172,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                         bottom: MediaQuery.of(context).viewInsets.bottom),
           child: Container(
             height: deviceHeight * 0.6,
-            padding: EdgeInsets.all(8),
+            padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
               color: const Color.fromARGB(255, 218, 218, 218),
               borderRadius: BorderRadius.circular(30),
@@ -190,7 +191,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                             fontFamily: "Outer-Sans",
                             fontWeight: FontWeight.normal),
                         decoration: InputDecoration(
-                            prefixText: "Name: ",
+                            prefixText: S.of(context).name,
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(15)),
                             focusedBorder: OutlineInputBorder(
@@ -199,7 +200,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                                     color: Colors.blue, width: 3))),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter a name';
+                            return S.of(context).pleaseEnterAName;
                           }
                           return null;
                         },
@@ -214,8 +215,8 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                             fontWeight: FontWeight.normal),
                         controller: weightController,
                         decoration: InputDecoration(
-                            prefixText: "Weight: ",
-                            suffixText: "kg",
+                            prefixText: S.of(context).weight,
+                            suffixText: S.of(context).kg,
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(15)),
                             focusedBorder: OutlineInputBorder(
@@ -225,11 +226,11 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                         keyboardType: TextInputType.number,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter a weight';
+                            return S.of(context).pleaseEnterAWeight;
                           }
                           final weight = double.tryParse(value);
                           if (weight == null || weight < 30 || weight > 250) {
-                            return 'Weight must be between 30 and 250';
+                            return S.of(context).weightMustBeBetween30And250;
                           }
                           return null;
                         },
@@ -244,8 +245,8 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                             fontWeight: FontWeight.normal),
                         controller: heightController,
                         decoration: InputDecoration(
-                            prefixText: "Height: ",
-                            suffixText: "cm",
+                            prefixText: S.of(context).height,
+                            suffixText: S.of(context).cm,
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(15)),
                             focusedBorder: OutlineInputBorder(
@@ -255,11 +256,11 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                         keyboardType: TextInputType.number,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter a height';
+                            return S.of(context).pleaseEnterAHeight;
                           }
                           final height = double.tryParse(value);
                           if (height == null || height < 100 || height > 250) {
-                            return 'Height must be between 100 and 250';
+                            return S.of(context).heightMustBeBetween100And250;
                           }
                           return null;
                         },
@@ -301,9 +302,9 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                             Navigator.pop(context);
                           }
                         },
-                        child: const Text(
-                          'Save changes',
-                          style: TextStyle(
+                        child: Text(
+                          S.of(context).saveChanges,
+                          style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.w600,
                               fontSize: 18),
@@ -406,7 +407,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                                     ],
                                   ),
                                   Text(
-                                    "Day 21 - Leg Day".toUpperCase(),
+                                    S.of(context).day1LegDay.toUpperCase(),
                                     style: const TextStyle(
                                         fontFamily: "Outer-Sans",
                                         fontSize: 24,
@@ -471,9 +472,9 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                                       Expanded(
                                         child: Row(
                                           children: [
-                                            const Text(
-                                              "Weight: ",
-                                              style: TextStyle(
+                                            Text(
+                                              S.of(context).weight,
+                                              style: const TextStyle(
                                                   color: Colors.grey,
                                                   fontFamily: "Outer-Sans",
                                                   fontWeight: FontWeight.w500,
@@ -498,9 +499,9 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                                       Expanded(
                                         child: Row(
                                           children: [
-                                            const Text(
-                                              "Height: ",
-                                              style: TextStyle(
+                                            Text(
+                                              S.of(context).height,
+                                              style: const TextStyle(
                                                   color: Colors.grey,
                                                   fontFamily: "Outer-Sans",
                                                   fontWeight: FontWeight.w500,
@@ -545,9 +546,9 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                                                   color: Colors.white),
                                               position: LegendPosition.bottom,
                                             ),
-                                            title: const ChartTitle(
-                                              text: "Today steps",
-                                              textStyle: TextStyle(
+                                            title: ChartTitle(
+                                              text: S.of(context).todaySteps,
+                                              textStyle: const TextStyle(
                                                   color: Colors.white,
                                                   fontFamily: "Outer-Sans"),
                                             ),
@@ -585,7 +586,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                                               ),
                                             ],
                                           )
-                                        : const Text("Need access")),
+                                        : Text(S.of(context).needAccess)),
                               ),
                             ],
                           ),
@@ -629,25 +630,25 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                                             ? LineChartSample2(
                                                 weightHistory:
                                                     state.user.weightHistory!)
-                                            : SizedBox(
+                                            : const SizedBox(
                                               height: 0,
                                             ),
                                       ),
                                       state.user.workoutHistory != null && state.user.workoutHistory!.isNotEmpty 
-                                       ? const Row(
+                                       ? Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: [
                                           Text(
-                                            "Workout history",
-                                            style: TextStyle(
+                                            S.of(context).workoutHistory,
+                                            style: const TextStyle(
                                                 color: Colors.white,
                                                 fontFamily: "Outer-Sans",
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 24),
                                           )
                                         ],
-                                      ) : SizedBox(height: 0),
+                                      ) : const SizedBox(height: 0),
                                       const SizedBox(
                                         height: 20,
                                       ),
@@ -759,7 +760,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                                                                           index]
                                                                       .workout
                                                                       .difficulty ??
-                                                                  "Easy",
+                                                                  S.of(context).easyDiff,
                                                             ),
                                                             fontFamily:
                                                                 "Outer-Sans",
