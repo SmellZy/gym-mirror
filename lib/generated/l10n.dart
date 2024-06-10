@@ -289,6 +289,126 @@ class S {
       args: [],
     );
   }
+
+  /// `Start`
+  String get startOnboarding {
+    return Intl.message(
+      'Start',
+      name: 'startOnboarding',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next`
+  String get nextOnboarding {
+    return Intl.message(
+      'Next',
+      name: 'nextOnboarding',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Home`
+  String get home {
+    return Intl.message(
+      'Home',
+      name: 'home',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Workout`
+  String get workout {
+    return Intl.message(
+      'Workout',
+      name: 'workout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Analytics`
+  String get analytics {
+    return Intl.message(
+      'Analytics',
+      name: 'analytics',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile`
+  String get profile {
+    return Intl.message(
+      'Profile',
+      name: 'profile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What's your name?`
+  String get whatsYourName {
+    return Intl.message(
+      'What`s your name?',
+      name: 'whatsYourName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your name`
+  String get enterYourName {
+    return Intl.message(
+      'Enter your name',
+      name: 'enterYourName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What's your height?`
+  String get whatsYourHeight {
+    return Intl.message(
+      'What`s your height?',
+      name: 'whatsYourHeight',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `160 cm`
+  String get cm160 {
+    return Intl.message(
+      '160 cm',
+      name: 'cm160',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What's your weight?`
+  String get whatsYourWeight {
+    return Intl.message(
+      'What`s your weight?',
+      name: 'whatsYourWeight',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What's your goal?`
+  String get whatsYourGoal {
+    return Intl.message(
+      'What`s your goal?',
+      name: 'whatsYourGoal',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

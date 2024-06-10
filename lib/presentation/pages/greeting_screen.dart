@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:gym_mirror/generated/l10n.dart';
 import 'package:gym_mirror/presentation/widgets/background_container.dart';
 import 'package:gym_mirror/router/router.dart';
 
@@ -102,7 +103,7 @@ class GreetingButton extends StatelessWidget {
         }
       },
       child: Text(
-        isLast ? "Start" : "Next",
+        isLast ? S.of(context).startOnboarding : S.of(context).nextOnboarding,
         style: const TextStyle(color: Color.fromARGB(192, 9, 9, 9)),
       ),
     );

@@ -24,35 +24,51 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "Hi": MessageLookupByLibrary.simpleMessage("Привіт! \n"),
         "Questions4": MessageLookupByLibrary.simpleMessage("на 4 запитання "),
+        "analytics": MessageLookupByLibrary.simpleMessage("Аналітика"),
         "answer": MessageLookupByLibrary.simpleMessage("Дайте відповідь "),
         "beforeWeStartOur":
             MessageLookupByLibrary.simpleMessage("перед тим як почати \n"),
         "bicycle": MessageLookupByLibrary.simpleMessage("Велосипед"),
         "bicylceDescription": MessageLookupByLibrary.simpleMessage(
             "Вправа для тренування м\'язів ніг, серцево-судинної системи."),
-        "createWorkout": MessageLookupByLibrary.simpleMessage("Create workout"),
-        "easyDiff": MessageLookupByLibrary.simpleMessage("Easy"),
+        "cm160": MessageLookupByLibrary.simpleMessage("160 см"),
+        "createWorkout":
+            MessageLookupByLibrary.simpleMessage("Створити тренування"),
+        "easyDiff": MessageLookupByLibrary.simpleMessage("Легка"),
+        "enterYourName":
+            MessageLookupByLibrary.simpleMessage("Введіть ваше імʼя"),
         "exercises": MessageLookupByLibrary.simpleMessage("вправами!"),
-        "expertDiff": MessageLookupByLibrary.simpleMessage("Expert"),
+        "expertDiff": MessageLookupByLibrary.simpleMessage("Професіонал"),
         "firstTraining":
             MessageLookupByLibrary.simpleMessage("перше тренування"),
-        "hardDiff": MessageLookupByLibrary.simpleMessage("Hard"),
+        "hardDiff": MessageLookupByLibrary.simpleMessage("Важка"),
         "hiMyNameIsIO":
             MessageLookupByLibrary.simpleMessage("Привіт! Мене звуть IO"),
+        "home": MessageLookupByLibrary.simpleMessage("Головна"),
         "iWillHelpYou":
             MessageLookupByLibrary.simpleMessage("Я допоможу тобі \n"),
         "io": MessageLookupByLibrary.simpleMessage("IO."),
-        "mediumDiff": MessageLookupByLibrary.simpleMessage("Medium"),
+        "mediumDiff": MessageLookupByLibrary.simpleMessage("Середня"),
         "mill": MessageLookupByLibrary.simpleMessage("Мельниця"),
         "millDescription": MessageLookupByLibrary.simpleMessage(
             "Вправа для тренування м\'язів ніг, сідниць і спини."),
         "myNameIs": MessageLookupByLibrary.simpleMessage("Мене звуть "),
-        "nothing": MessageLookupByLibrary.simpleMessage("Nothing"),
+        "nextOnboarding": MessageLookupByLibrary.simpleMessage("Далі"),
+        "nothing": MessageLookupByLibrary.simpleMessage("Нічого"),
+        "profile": MessageLookupByLibrary.simpleMessage("Профіль"),
         "selectExercises":
-            MessageLookupByLibrary.simpleMessage("Select exercises"),
+            MessageLookupByLibrary.simpleMessage("Виберіть вправи"),
+        "startOnboarding": MessageLookupByLibrary.simpleMessage("Почати"),
+        "whatsYourGoal": MessageLookupByLibrary.simpleMessage("Яка ваша ціль?"),
+        "whatsYourHeight":
+            MessageLookupByLibrary.simpleMessage("Який ваш зріст?"),
+        "whatsYourName": MessageLookupByLibrary.simpleMessage("Як вас звуть?"),
+        "whatsYourWeight":
+            MessageLookupByLibrary.simpleMessage("Яка ваша вага?"),
         "withIO": MessageLookupByLibrary.simpleMessage("з "),
+        "workout": MessageLookupByLibrary.simpleMessage("Тренування"),
         "workoutDifficulty":
-            MessageLookupByLibrary.simpleMessage("Workout difficulty"),
-        "workoutTitle": MessageLookupByLibrary.simpleMessage("Workout title")
+            MessageLookupByLibrary.simpleMessage("Складність тренування"),
+        "workoutTitle": MessageLookupByLibrary.simpleMessage("Назва тренування")
       };
 }

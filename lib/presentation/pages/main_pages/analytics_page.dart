@@ -1,16 +1,11 @@
 import 'dart:developer';
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:gym_mirror/data/models/finished_workout/finished_workout_model.dart';
 import 'package:gym_mirror/data/models/workout/workout_model.dart';
-import 'package:gym_mirror/domain/entities/finished_workout.dart';
 import 'package:gym_mirror/domain/entities/user.dart';
-import 'package:gym_mirror/domain/entities/workout.dart';
 import 'package:gym_mirror/domain/repositories/finished_workout_repository.dart';
 import 'package:gym_mirror/domain/repositories/user_repository.dart';
 import 'package:gym_mirror/domain/repositories/workout_repository.dart';

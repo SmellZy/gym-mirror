@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:gym_mirror/domain/entities/user.dart';
 import 'package:gym_mirror/domain/repositories/user_repository.dart';
+import 'package:gym_mirror/generated/l10n.dart';
 import 'package:gym_mirror/presentation/bloc/user/user_bloc.dart';
 import 'package:gym_mirror/presentation/widgets/background_container.dart';
 import 'package:gym_mirror/presentation/widgets/onboarding_info.dart';
@@ -122,7 +123,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       }
                     },
                     child: Text(
-                      _isLastPage ? "Start" : "Next",
+                      _isLastPage ? S.of(context).startOnboarding : S.of(context).nextOnboarding,
                       style: const TextStyle(
                           color: Color.fromARGB(255, 195, 195, 195)),
                     ),
@@ -147,9 +148,9 @@ class OnboardingName extends StatelessWidget {
   Widget build(BuildContext context) {
     return OnboardingInfoInput(
       heightOfSizedBox: 30,
-      labelText: "What`s your name?",
+      labelText: S.of(context).whatsYourName,
       child: OnboardingInputField(
-        hintText: "Enter your name",
+        hintText: S.of(context).enterYourName,
         keyboardType: TextInputType.name,
         controller: nameController,
         suffixText: "",
@@ -170,9 +171,9 @@ class OnboardingHeight extends StatelessWidget {
   Widget build(BuildContext context) {
     return OnboardingInfoInput(
       heightOfSizedBox: 30,
-      labelText: "What`s your height?",
+      labelText: S.of(context).whatsYourHeight,
       child: OnboardingInputField(
-        hintText: "160 cm",
+        hintText: S.of(context).cm160,
         keyboardType: TextInputType.number,
         suffixText: "cm",
         controller: heightController,
@@ -197,8 +198,8 @@ class _OnboardingWeightState extends State<OnboardingWeight> {
   @override
   Widget build(BuildContext context) {
     return OnboardingInfoInput(
-      heightOfSizedBox: 30,
-      labelText: "What`s your weight?",
+      heightOfSizedBox: 28,
+      labelText: S.of(context).whatsYourWeight,
       child: NumberPicker(
         axis: Axis.horizontal,
         textStyle: const TextStyle(
@@ -244,8 +245,8 @@ class _OnboardingGoalWeightState extends State<OnboardingGoalWeight> {
   @override
   Widget build(BuildContext context) {
     return OnboardingInfoInput(
-      heightOfSizedBox: 30,
-      labelText: "What`s your goal?",
+      heightOfSizedBox: 28,
+      labelText: S.of(context).whatsYourGoal,
       child: NumberPicker(
         axis: Axis.horizontal,
         textStyle: const TextStyle(

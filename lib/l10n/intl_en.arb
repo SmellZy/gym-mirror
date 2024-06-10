@@ -22,5 +22,17 @@
   "nothing": "Nothing",
   "workoutTitle": "Workout title",
   "workoutDifficulty": "Workout difficulty",
-  "selectExercises": "Select exercises"
+  "selectExercises": "Select exercises",
+  "startOnboarding": "Start",
+  "nextOnboarding": "Next",
+  "home": "Home",
+  "workout": "Workout",
+  "analytics": "Analytics",
+  "profile": "Profile",
+  "whatsYourName": "What`s your name?",
+  "enterYourName": "Enter your name",
+  "whatsYourHeight": "What`s your height?",
+  "cm160": "160 cm",
+  "whatsYourWeight": "What`s your weight?",
+  "whatsYourGoal": "What`s your goal?"
 }
